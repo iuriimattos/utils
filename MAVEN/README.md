@@ -1,0 +1,1 @@
+* [How do I fix maven error The JAVA_HOME environment variable is not defined correctly?](https://stackoverflow.com/questions/44680125/how-do-i-fix-maven-error-the-java-home-environment-variable-is-not-defined-corre/55137121)

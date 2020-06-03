@@ -1,0 +1,16 @@
+Options -Indexes
+
+# Rewrites
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d 
+RewriteCond %{REQUEST_FILENAME}\.php -f 
+RewriteRule ^(.*)$ $1.php
+RewriteCond %{REQUEST_FILENAME}\.html -f 
+RewriteRule ^(.*)$ $1.html
+
+# Error Pages
+#ErrorDocument 404 /errors/404.htm
+#ErrorDocument 500 /errors/500.htm
+
+#301 Redirects
+#Redirect 301 /old-url-1.htm http://www.yoursite.com/new-url-1/
