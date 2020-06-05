@@ -82,3 +82,9 @@ TTY font-size
 ```
 sudo dpkg-reconfigure console-setup
 ```
+
+Group strings by pattern
+```
+grep -E '(pattern1|pattern2)' file
+```
+```
