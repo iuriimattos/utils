@@ -1,3 +1,4 @@
+----
 # Mount filesystem 
 ```
 sudo mount -o rw /partition/identifier /mount/point
@@ -18,8 +19,8 @@ reboot
 ```
 cp /etc/resolv.conf /mnt/etc/resolv.conf
 ```
-
-Group strings by pattern
+----
+# Group strings by pattern
 ```
 grep -E '(pattern1|pattern2)' file
 ```
