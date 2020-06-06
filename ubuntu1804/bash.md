@@ -87,4 +87,8 @@ Group strings by pattern
 ```
 grep -E '(pattern1|pattern2)' file
 ```
+
+Mount filesystem
+```
+sudo mount -o remount,rw /partition/identifier /mount/point
 ```
