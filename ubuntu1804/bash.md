@@ -1,9 +1,9 @@
-Mount filesystem 
+# Mount filesystem 
 ```
 sudo mount -o rw /partition/identifier /mount/point
 ```
-related issues
-* [ALERT! /dev/disk/by-uuid/xxxxxxxxx does not exist. Dropping to a shell](https://askubuntu.com/questions/516217/alert-dev-disk-by-uuid-xxxxxxxxx-does-not-exist-dropping-to-a-shell/516471#516471)
+## issues
+### [ALERT! /dev/disk/by-uuid/xxxxxxxxx does not exist. Dropping to a shell](https://askubuntu.com/questions/516217/alert-dev-disk-by-uuid-xxxxxxxxx-does-not-exist-dropping-to-a-shell/516471#516471)
 ```
 sudo mount /dev/sda1 /mnt
 sudo mount --bind /dev /mnt/dev
@@ -14,7 +14,10 @@ update-initramfs -u
 update-grub
 reboot
 ```
-* [Unable to reach network from chroot](https://unix.stackexchange.com/questions/280500/unable-to-reach-network-from-chroot/280534#280534)
+### [Unable to reach network from chroot](https://unix.stackexchange.com/questions/280500/unable-to-reach-network-from-chroot/280534#280534)
+```
+cp /etc/resolv.conf /mnt/etc/resolv.conf
+```
 
 Group strings by pattern
 ```
