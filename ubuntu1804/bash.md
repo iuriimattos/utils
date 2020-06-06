@@ -1,3 +1,46 @@
+Mount filesystem 
+```
+sudo mount -o rw /partition/identifier /mount/point
+```
+related issues
+* [ALERT! /dev/disk/by-uuid/xxxxxxxxx does not exist. Dropping to a shell](https://askubuntu.com/questions/516217/alert-dev-disk-by-uuid-xxxxxxxxx-does-not-exist-dropping-to-a-shell/516471#516471)
+* [Unable to reach network from chroot](https://unix.stackexchange.com/questions/280500/unable-to-reach-network-from-chroot/280534#280534)
+
+Group strings by pattern
+```
+grep -E '(pattern1|pattern2)' file
+```
+
+TTY font-size
+```
+sudo dpkg-reconfigure console-setup
+```
+
+Save all distro packages into packages.txt
+```
+dpkg -l | grep ^ii | awk '{ print $2 }' > packages.txt
+```
+
+Install all packages from packages.txt
+```
+apt-get install $(grep -vE "^\s*#" packages.txt  | tr "\n" " ")
+```
+
+Clean corrupted packages
+```
+sudo dpkg --purge dpkg --get-selections | grep deinstall | cut -f1
+```
+
+usb bootable (change /dev/sdd1)
+```
+sudo winusb -v --install win7-64x-PTBR.iso /dev/sdd1
+```
+
+Show logs realtime
+```
+journalctl -f
+```
+
 define folder owner
 ```
 sudo chown -hR iurimatos ./www/
@@ -6,11 +49,6 @@ sudo chown -hR iurimatos ./www/
 search packages
 ```
 apt-cache search keyword
-```
-
-usb bootable (change /dev/sdd1)
-```
-sudo winusb -v --install win7-64x-PTBR.iso /dev/sdd1
 ```
 
 restart gui (change lightdm)
@@ -62,36 +100,3 @@ Kill process by PID
 ```
 kill -9 <PID>
 ```
-
-Show logs realtime
-```
-journalctl -f
-```
-
-Save all distro packages into packages.txt
-```
-dpkg -l | grep ^ii | awk '{ print $2 }' > packages.txt
-```
-
-Install all packages from packages.txt
-```
-apt-get install $(grep -vE "^\s*#" packages.txt  | tr "\n" " ")
-```
-
-TTY font-size
-```
-sudo dpkg-reconfigure console-setup
-```
-
-Group strings by pattern
-```
-grep -E '(pattern1|pattern2)' file
-```
-
-Mount filesystem 
-```
-sudo mount -o rw /partition/identifier /mount/point
-```
-
-related issues
-* [ALERT! /dev/disk/by-uuid/xxxxxxxxx does not exist. Dropping to a shell](https://askubuntu.com/questions/516217/alert-dev-disk-by-uuid-xxxxxxxxx-does-not-exist-dropping-to-a-shell/516471#516471)
