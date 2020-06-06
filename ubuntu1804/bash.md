@@ -92,5 +92,6 @@ Mount filesystem
 ```
 sudo mount -o rw /partition/identifier /mount/point
 ```
+
 related issues
 * (ALERT! /dev/disk/by-uuid/xxxxxxxxx does not exist. Dropping to a shell)[https://askubuntu.com/questions/516217/alert-dev-disk-by-uuid-xxxxxxxxx-does-not-exist-dropping-to-a-shell/516471#516471]
