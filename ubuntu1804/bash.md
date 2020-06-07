@@ -19,6 +19,17 @@ reboot
 ```
 cp /etc/resolv.conf /mnt/etc/resolv.conf
 ```
+### [Upgraded to 18.04 and now have many broken packages and unmet dependencies](https://askubuntu.com/questions/1032126/upgraded-to-18-04-and-now-have-many-broken-packages-and-unmet-dependencies/1032453#1032453)
+edit 
+```
+/var/lib/dpkg/status
+```
+clear out the entire **Depends:** line from the packages that were complaining.
+then execute  
+```
+apt-get update && apt-get upgrade
+```
+
 ----
 # Group strings by pattern
 ```
