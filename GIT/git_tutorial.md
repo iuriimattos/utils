@@ -20,7 +20,7 @@ git init
 git add .
 ```
 
-> stage arquivos para serem comitados
+> prepara as modificações (staged) para versionar
 
 ```
 git remote show remote
@@ -38,7 +38,7 @@ git remote -v
 git status
 ```
 
-> ver alteracoes no branch
+> exibe a situação atual da branch
 
 ```
 git checkout (arquivo)
@@ -47,63 +47,71 @@ git checkout (arquivo)
 > reverte o arquivo ao estado original
 
 ```
-git checkout (arquivo)
-```
-
-```
 git checkout (branch)
 ```
+
+> envia as mudanças atuais para uma branch
 
 ```
 git checkout -b (branch)
 ```
 
-> reverte o arquivo ao estado original ou para uma branch, flag -b cria uma branch com a versão da branch atual
+> cria uma branch com as modificações atuais
 
 ```
 git checkout -b remoto/branch branchName
 ```
 
-> cria nova branch a partir de um remoto/branch e da um checkout para ela
+> cria nova branch a partir de um repositório remoto
 
 ```
 git commit -m "texto do comit"
 ```
 
-> envia os commits para o repositório remoto
+> cria uma nova versão
 
 ```
 git push
 ```
 
+> atualiza a branch atual ou uma preconfigurada do repositorio remoto
+
+```
+git push --set-upstream <remote> <branch>
+```
+
+> preconfigura a branch atual para uma branch do repositorio remoto
+
 ```
 git push remote branch
 ```
+
+> atualiza uma branch específica do repositorio remoto
 
 ```
 git push remote branch -f
 ```
 
-> atualiza um repositorio remoto, a flag -f no final força a atualização
+> força a atualização de uma branch do repositorio remoto
 
 ```
 git pull remote branch --rebase
 ```
 
-> atualiza a minha versão local a partir de um repositorio remoto e um branch
+> atualiza a branch atual a partir de um repositorio remoto (coloca os commits atuais no topo (HEAD))
 > ideal para trabalhar no mesmo arquivo
 
 ```
-git pull rebase  --continue
+git pull rebase --continue
 ```
 
-> continua o rebase a partir dos conflitos resolvidos
+> continua o pull --rebase a partir dos conflitos resolvidos
 
 ```
 git remote add origin (url)
 ```
 
-> adiciona projeto remoto ao meu repositorio local
+> adiciona um repositório remoto ao repositorio local
 
 ```
 git clone (url)
@@ -125,57 +133,65 @@ ignorando todos os arquivos de uma pasta
 git checkout (arquivo)
 ```
 
-> reverte o arquivo ao estado original
+> retira as mudanças não commitas de um arquivo
 
 ```
 git fetch --all
 ```
 
-> adquire todas as branch criadas no repositorio(s) remoto
+```
+git fetch -a
+```
+
+> busca as alterações de todas as branchs remotas
+
+```
+git log
+```
+
+> exibe as modificações da branch atual com seus devidos hash
+> o hash é uma sequencia de número e letras após a palavra commit
 
 ```
 git reset .
 ```
 
-> unstaged todos os arquivos
+> retira todas as modificações que seriam commitadas (ustage)
+> usado para reverter o git add (diferente de git checkout .)
 
 ```
-git reset --soft commit
+git reset --soft <commit_hash>
 ```
 
-```
-git reset --soft HEAD^
-```
+> reset da a branch atual para um commit específico 
+> **e coloca as modificações do HEAD até o <commit_hash> em sua arvore de trabalho para um commit**
+> as modificações ficam staged (git add provoca o staged)
 
 ```
-git reset --soft remote/branch
+git reset --soft HEAD~<numero>
 ```
 
-> revertendo commit ou remote/branch mantendo alterações na sua arvore de trabalho
+> reset <numero> commits da branch atual 
+> **e coloca as modificações do HEAD até o <numero> em sua arvore de trabalho para um commit**
+
 
 ```
 git reset --hard commit
 ```
 
 ```
-git reset --hard HEAD^
+git reset --hard HEAD~<numero>
 ```
 
 ```
 git reset --hard remote/branch
 ```
 
-> revertendo commit ou remote/branch NÃO mantém alterações na sua arvore de trabalho
-> atualiza arvore de trabalho a partir de uma branch remota
+> reset da a branch atual para um commit específico **NÃO mantendo alterações não commitadas**
+
 
 ```
-git cherry-pick --no-commit <SHA>, <SHA>
+git cherry-pick --no-commit <commit_hash>, <commit_hash>
 ```
 
-> pega conteudo de commits e atualiza minha working tree, deixando essas alterações em staged
-
-```
-git branch --set-upstream-to origin/branch branch
-```
-
-> set o push padrao
+> pega  commits e atualiza a working tree, deixando essas alterações em staged
