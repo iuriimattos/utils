@@ -28,4 +28,4 @@ https://resultadosdigitais.com.br/blog/google-meu-negocio/
 
 video: https://www.youtube.com/watch?v=76LilqwN1-w
 
-Tudo da google é gratuito!
+Tudo da google é gratuito! eu trabalho com esta área digital, sou analista de sistemas (crio aplicativos e sistemas) meu portfólio: www.iurimatos.com.br 
