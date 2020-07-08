@@ -28,4 +28,4 @@ https://resultadosdigitais.com.br/blog/google-meu-negocio/
 
 video: https://www.youtube.com/watch?v=76LilqwN1-w
 
-Tudo da google é gratuito! eu trabalho com esta área digital, sou analista de sistemas (crio aplicativos e sistemas) meu portfólio: www.iurimatos.com.br 
+Google Meu Negócio, coloca sua empresa no google maps. Google Trends é uma ferramenta de marketing baseadas nas palavras pesquisadas no google. Google Primer são cursos gratuitos de marketing (incluindo market digital). Tudo da google é gratuito! eu trabalho com esta área digital, sou analista de sistemas (crio aplicativos e sistemas) meu portfólio: http://iurimatos.com.br/
