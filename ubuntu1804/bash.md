@@ -56,13 +56,10 @@ Clean corrupted packages
 sudo dpkg --purge dpkg --get-selections | grep deinstall | cut -f1
 ```
 
-Fully reinstall python [Broken python dependencies after trying to re-install](https://askubuntu.com/a/1080265)
-```
-sudo apt-get purge python* && sudo apt-get autoclean && sudo apt-get install python*
-```
-
+Fully reinstall python 
+[Broken python dependencies after trying to re-install](https://askubuntu.com/a/1080265)
+[Impossible to install with apt-get - python missing](https://askubuntu.com/a/1066587)
 [W: Possible missing firmware /lib/firmware/rtl_nic/](https://askubuntu.com/a/1255803)
-
 [W: Possible missing firmware /lib/firmware/i915](https://askubuntu.com/a/1255803)
 
 for secure, firstly boot livecd and mount filesystem (dev/proc/sys) finally chroot mounted path then
