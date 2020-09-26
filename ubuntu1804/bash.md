@@ -20,7 +20,7 @@ reboot
 cp /etc/resolv.conf /mnt/etc/resolv.conf
 ```
 ### [Upgraded to 18.04 and now have many broken packages and unmet dependencies](https://askubuntu.com/questions/1032126/upgraded-to-18-04-and-now-have-many-broken-packages-and-unmet-dependencies/1032453#1032453)
-edit 
+edit file (use vscode prefer)
 ```
 /var/lib/dpkg/status
 ```
@@ -54,6 +54,11 @@ apt-get install $(grep -vE "^\s*#" packages.txt  | tr "\n" " ")
 Clean corrupted packages
 ```
 sudo dpkg --purge dpkg --get-selections | grep deinstall | cut -f1
+```
+
+Fully reinstall python [Broken python dependencies after trying to re-install](https://askubuntu.com/a/1080265)
+```
+sudo apt-get purge python* && sudo apt-get autoclean && sudo apt-get install python*
 ```
 
 usb bootable (change /dev/sdd1)
