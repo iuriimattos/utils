@@ -63,7 +63,7 @@ sudo apt-get purge python* && sudo apt-get autoclean && sudo apt-get install pyt
 
 [W: Possible missing firmware /lib/firmware/rtl_nic/](https://askubuntu.com/a/1255803)
 
-[W: Possible missing firmware /lib/firmware/i915](https://askubuntu.com/a/1255803
+[W: Possible missing firmware /lib/firmware/i915](https://askubuntu.com/a/1255803)
 
 for secure, firstly boot livecd and mount filesystem (dev/proc/sys) finally chroot mounted path then
 ```
