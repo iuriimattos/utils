@@ -6,7 +6,9 @@ sudo mount -o rw /partition/identifier /mount/point
 ## issues
 ### [ALERT! /dev/disk/by-uuid/xxxxxxxxx does not exist. Dropping to a shell](https://askubuntu.com/questions/516217/alert-dev-disk-by-uuid-xxxxxxxxx-does-not-exist-dropping-to-a-shell/516471#516471)
 ```
-sudo mount /dev/sda1 /mnt && sudo mount --bind /dev /mnt/dev && sudo mount --bind /proc /mnt/proc && sudo mount --bind /sys /mnt/sys && sudo chroot /mnt && update-initramfs -u && update-grub
+sudo mount /dev/sda2 /mnt && sudo mount --bind /dev /mnt/dev && sudo mount --bind /proc /mnt/proc && sudo mount --bind /sys /mnt/sys && sudo chroot /mnt
+update-initramfs -u
+update-grub
 ```
 ### [Unable to reach network from chroot](https://unix.stackexchange.com/questions/280500/unable-to-reach-network-from-chroot/280534#280534)
 ```
