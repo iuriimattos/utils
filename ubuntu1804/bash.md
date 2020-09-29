@@ -58,6 +58,8 @@ Fully reinstall python
 
 [Impossible to install with apt-get - python missing](https://askubuntu.com/a/1066587)
 
+[Can anyone help me with this? I am not able to remove or re-install software center or any software](https://askubuntu.com/a/546506)
+
 DANGER
 
 [W: Possible missing firmware /lib/firmware/rtl_nic/](https://askubuntu.com/a/1255803)
