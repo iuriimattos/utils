@@ -21,6 +21,8 @@
 
 [Reset MySQL 5.7 root password](https://www.techandme.se/reset-mysql-5-7-root-password/)
 
+[Port forwarding to local server](https://askubuntu.com/questions/623732/port-forwarding-to-local-server)
+
 [How to Install PHP on Ubuntu 18.04](https://linuxize.com/post/how-to-install-php-on-ubuntu-18-04/)
 
 [Unable to use IntelliJ IDEA keyboard shortcuts on Ubuntu](https://askubuntu.com/a/1032688/1058011)
