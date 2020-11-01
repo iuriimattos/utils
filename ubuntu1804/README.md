@@ -29,7 +29,7 @@
 
 [Unable to use IntelliJ IDEA keyboard shortcuts on Ubuntu](https://askubuntu.com/a/1032688/1058011)
 
-
+[Google Chrome Stable - Fontconfig error: Cannot load default config file: No such file: (null)](https://github.com/clearlinux/distribution/issues/422#issuecomment-500603802)
 
 
 
