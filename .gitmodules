@@ -1,0 +1,3 @@
+[submodule "ahk/translator"]
+	path = ahk/translator
+	url = https://github.com/iurimattos/copy2Translate.git
