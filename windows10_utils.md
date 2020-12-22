@@ -1,3 +1,5 @@
+[How to Fix: Windows 10 Desktop Icon Spacing](https://www.infopackets.com/news/9719/how-fix-windows-10-desktop-icon-spacing#:~:text=Hold%20down%20the%20CTRL%20key,CTRL%20key%20on%20the%20keyboard.)
+
 Apps (No Windows Store App) Pinned On Taskbar
 
 ```
