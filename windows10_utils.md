@@ -6,6 +6,12 @@ ffmpeg -i aws.mp4 -vcodec libvpx-vp9 -b:v 1M -acodec libvorbis aws.webm
 
 [How to Fix: Windows 10 Desktop Icon Spacing](https://www.infopackets.com/news/9719/how-fix-windows-10-desktop-icon-spacing#:~:text=Hold%20down%20the%20CTRL%20key,CTRL%20key%20on%20the%20keyboard.)
 
+Starup apps
+
+```
+C:\Users\(user_folder)\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
+```
+
 Apps (No Windows Store App) Pinned On Taskbar
 
 ```
