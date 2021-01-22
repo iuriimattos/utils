@@ -15,6 +15,7 @@ C:\Users\(user_folder)\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Sta
 [Configurar a barra de tarefas do Windows 10](https://docs.microsoft.com/pt-br/windows/configuration//configure-windows-10-taskbar)
 
 [Export StartLayout Windows 10 issue/questions](https://community.spiceworks.com/topic/2026343-export-startlayout-windows-10-issue-questions)
+
 Apps (No Windows Store App) Pinned On Taskbar
 
 ```
