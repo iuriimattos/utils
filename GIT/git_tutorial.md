@@ -195,8 +195,8 @@ git reset --hard remote/branch
 
 > reset da a branch atual para um commit específico **NÃO mantendo alterações não commitadas**
 
-
 ```
 git cherry-pick --no-commit <commit_hash>, <commit_hash>
 ```
 
+> pega  commits e atualiza a working tree, deixando essas alterações em staged
