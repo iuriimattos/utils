@@ -200,9 +200,3 @@ git reset --hard remote/branch
 git cherry-pick --no-commit <commit_hash>, <commit_hash>
 ```
 
-> pega  commits e atualiza a working tree, deixando essas alterações em staged
-
-```
-git cherry-pick --no-commit <commit_hash>, <commit_hash>
-```
-
