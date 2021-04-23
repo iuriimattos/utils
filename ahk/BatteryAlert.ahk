@@ -29,8 +29,8 @@ if (batteryLifePercent > 99){ ;Yes.
 		else{
 			;Format the message box
 			output=UNPLUG THE CHARGING CABLE !!!`nBattery Life: %batteryLifePercent%%percentage%
-			SoundBeep, 1500, 200
-			MsgBox, %output% ;Notify me.
+			SoundPlay, BatteryAlert.wav, Wait
+			MsgBox, 0, , %output%, 5 ;Notify me.			
 			sleepTime := 5
 		}
 	}
@@ -40,13 +40,13 @@ if (batteryLifePercent > 99){ ;Yes.
 }
 
 ;Is the battery charged higher than 99%
-if (batteryLifePercent < 15){ ;Yes. 
+if (batteryLifePercent < 45){ ;Yes. 
 
 	if (acLineStatus == 0){ ;Only notify me once
 		;Format the message box
 		output=PLUG IN THE CHARGING CABLE !!!`nBattery Life: %batteryLifePercent%%percentage%
-		SoundBeep, 1500, 200
-		MsgBox, %output% ;Notify me.
+		SoundPlay, BatteryAlert.wav, Wait
+		MsgBox, 0, , %output%, 5 ;Notify me.
 		sleepTime := 5
 	}
 	else{
