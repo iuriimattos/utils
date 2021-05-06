@@ -200,3 +200,10 @@ git cherry-pick --no-commit <commit_hash>, <commit_hash>
 ```
 
 > pega  commits e atualiza a working tree, deixando essas alterações em staged
+
+```
+git rm --cached -r <path-to-file>
+git rm --cached -r <path>
+```
+
+> deleta todas as versões de um determinado aquivo ou pasta
