@@ -31,7 +31,7 @@ ffmpeg -i aws.mp4 -vcodec libvpx-vp9 -b:v 1M -acodec libvorbis aws.webm
 Apps (No Windows Store App) Pinned On Taskbar
 
 ```
-C:\Users\(user_folder)\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar
+%APPDATA%\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar
 ```
 
 [Windows 10 Tip: Make Apps or Files Launch Automatically During Startup](https://www.groovypost.com/howto/windows-10-make-apps-files-launch-automatically-during-startup/)
@@ -39,5 +39,5 @@ C:\Users\(user_folder)\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\
 Starup apps
 
 ```
-C:\Users\(user_folder)\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
+%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup
 ```
