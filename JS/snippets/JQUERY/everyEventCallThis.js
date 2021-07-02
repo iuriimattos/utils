@@ -1,2 +1,0 @@
-e.stopPropagation();
-e.preventDefault();
