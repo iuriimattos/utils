@@ -1,28 +1,32 @@
 {
   "configurations": [
     {
+      "type": "pwa-chrome",
+      "request": "attach",
       "name": "Attach Canary",
       "port": 9222,
-      "request": "attach",
-      "type": "pwa-chrome",
+      "urlFilter": "http://localhost:4200/*",
       "webRoot": "${workspaceFolder}"
     },
     {
-      "name": "Launch Canary",
       "type": "pwa-chrome",
       "request": "launch",
+      "name": "Launch Canary",
+      "port": 9222,
       "url": "http://localhost:4200",
-      "webRoot": "${workspaceRoot}",
+      "runtimeExecutable": "C:\\Users\\(user)\\AppData\\Local\\Google\\Chrome SxS\\Application\\chrome.exe",
+      "userDataDir": "C:\\ChromeDevSession",
+      "runtimeArgs": [
+        "--disable-web-security",
+        "--disable-infobars",
+        "--disable-session-crashed-bubble",
+        "--remote-debugging-port=9222"
+      ],
       "sourceMaps": true,
       "sourceMapPathOverrides": {
         "webpack:///src/*": "${webRoot}/*"
       },
-      "userDataDir": "${workspaceRoot}.vscode/chrome",
-      "runtimeArgs": [
-        "--disable-infobars --disable-session-crashed-bubble"
-      ],
-      "runtimeExecutable": "C:\\Users\\(user)\\AppData\\Local\\Google\\Chrome SxS\\Application\\chrome.exe",
+      "webRoot": "${workspaceRoot}"
     }
   ]
-}
 }
