@@ -1,0 +1,36 @@
+# C:\Users\iuri\.gitconfig
+[user]
+	name = iuri.matos
+	email = iuriimattos@gmail.com
+[core]
+	editor = \"C:\\Users\\iuri\\AppData\\Local\\Programs\\Microsoft VS Code Insiders\\Code - Insiders.exe\" --wait
+	longpaths = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[remote "origin"]
+	proxy = 
+	proxy = 
+[http]
+	sslCAInfo = C:\\cert.pfx
+	sslCAInfo = certPFX
+	sslVerify = false
+[alias]
+	change-commits = "'!'f() { VAR=\\$1; OLD=\\$2; NEW=\\$3; shift 3; git filter-branch --env-filter \"if [[ \\\"\\$\\`echo \\$VAR\\`\\\" = '\\$OLD' ]]; then export \\$VAR='\\$NEW'; fi\" \\$@; }; f"
+	l = !git log	
+	s = status
+	wip = !git add -A && git commit -m "wip"
+	podr = !git pull origin develop --rebase
+	pod = !git pull origin develop	
+	pom = !git pull origin master	
+	co = checkout
+	ll = log --all --graph --decorate --oneline --abbrev-commit
+	cm = commit
+	ac = !git add -A && git commit
+	st = status -sb
+	tags = tag -l
+	branches = branch -a
+	remotes = remote -v
+	dt = diff-tree -p	
