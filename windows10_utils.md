@@ -45,5 +45,6 @@ Apps (No Windows Store App) Pinned On Taskbar
 Starup apps
 
 ```
+shell:startup
 %APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup
 ```
