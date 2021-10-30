@@ -1,5 +1,6 @@
 ; credits
 ; https://stackoverflow.com/questions/57311941/make-capslock-work-properly-when-single-double-and-combo-pressed/57323509#57323509
+Menu, Tray, Icon , Shell32.dll, 75, 1
 Capslock::
     If (A_PriorHotKey = "~Capslock Up" AND A_TimeSincePriorHotkey < 400 AND A_TimeSincePriorHotkey > 50) ; double-press
         Send, {Esc} 
