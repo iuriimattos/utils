@@ -1,13 +1,21 @@
+Menu, Tray, Icon , Shell32.dll, 75, 1
+
 ; credits
 ; https://stackoverflow.com/a/57323509
-Menu, Tray, Icon , Shell32.dll, 75, 1
 Capslock::
    If (A_PriorHotKey = "~Capslock Up" AND A_TimeSincePriorHotkey < 400 AND A_TimeSincePriorHotkey > 50) ; double-press
    Send, {Esc}
    SetTimer, RestoreCapslockState, 50
 return
- 
+
 ~Capslock Up:: return ; The tilde prefix (~) prevents AHK from blocking the key-down/up events
+
+RestoreCapslockState:
+   KeyWait, Capslock ; wait for Capslock to be released
+   SetTimer, RestoreCapslockState, OFF
+   If (A_PriorKey != "Capslock")
+      SetCapsLockState % !GetKeyState("CapsLock", "T") ; Toggles CapsLock to its opposite state, requires [v1.1.30+]
+return
  
 CapsLock & A::MoveCursor("{LEFT}")
 CapsLock & S::MoveCursor("{DOWN}")
@@ -50,13 +58,6 @@ MoveCursor(key) {
 }else  {
    Send, %key%
 }}
- 
-RestoreCapslockState:
-   KeyWait, Capslock ; wait for Capslock to be released
-   SetTimer, RestoreCapslockState, OFF
-   If (A_PriorKey != "Capslock")
-      SetCapsLockState % !GetKeyState("CapsLock", "T") ; Toggles CapsLock to its opposite state, requires [v1.1.30+]
-return
 
 ; credits pretty code
 ; http://sl5.it/SL5_preg_contentFinder/examples/AutoHotKey/converts_your_autohotkey_code_into_pretty_indented_source_code.php
