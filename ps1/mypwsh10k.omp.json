@@ -1,0 +1,74 @@
+{
+  "final_space": true,
+  "console_title": true,
+  "console_title_style": "template",
+  "console_title_template": "{{if .Root}}root :: {{end}}{{.Shell}} :: {{.Folder}}",
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+      ]
+    },
+    {
+      "type": "newline"
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "path",
+          "style": "diamond",
+          "powerline_symbol": "",
+          "invert_powerline": false,
+          "foreground": "",
+          "background": "",
+          "leading_diamond": "",
+          "trailing_diamond": "",
+          "properties": {
+            "mapped_locations": {
+              "C:\\VIVERE": "~"
+            },
+            "enable_hyperlink": true,
+            "home_icon": "~",
+            "prefix": " \uFD31 ",
+            "style": "agnoster_short",
+            "max_depth": 2
+          }
+        }
+      ]
+    },
+    {
+      "type": "newline"
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "git",
+          "style": "diamond",
+          "powerline_symbol": "",
+          "foreground": "",
+          "background": "",
+          "properties": {
+            "prefix": " ",
+            "display_status": true,
+            "display_stash_count": true,
+            "display_upstream_icon": true
+          }
+        },
+        {
+          "foreground": "",
+          "properties": {
+            "prefix": "",
+            "text": ""
+          },
+          "style": "plain",
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}
