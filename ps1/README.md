@@ -5,3 +5,5 @@
 [Oh-My-Posh V3 is Out in the Market🎉🎉🎉](https://medium.com/illumination/oh-my-posh-v3-is-out-in-the-market-9ef3def19e58)
 
 [Customise Your Windows PowerShell With oh-my-posh & posh-git](https://medium.com/analytics-vidhya/customize-your-windows-powershell-with-oh-my-posh-posh-git-93284b2749b6)
+
+[Opening up Windows Terminal with elevated privileges, from within Windows Terminal](https://stackoverflow.com/a/62542633)
