@@ -30,5 +30,5 @@ SwitchToWindowsTerminal()
   }
 }
 
-; Hotkey to use Ctrl+' to launch/restore the Windows Terminal.
-^'::SwitchToWindowsTerminal()
+; Hotkey to use Alt \ to launch/restore the Windows Terminal.
+!\::SwitchToWindowsTerminal()
