@@ -7,3 +7,5 @@
 [Customise Your Windows PowerShell With oh-my-posh & posh-git](https://medium.com/analytics-vidhya/customize-your-windows-powershell-with-oh-my-posh-posh-git-93284b2749b6)
 
 [Opening up Windows Terminal with elevated privileges, from within Windows Terminal](https://stackoverflow.com/a/62542633)
+
+[Write file names from loop to text file](https://stackoverflow.com/a/17664081)
