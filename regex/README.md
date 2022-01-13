@@ -1,3 +1,8 @@
+exclude word
+```
+^(?!.*text).*?(?:te|xt).*
+```
+
 between words
 ```
 [a-zA-z]*between*[a-zA-z]
@@ -5,7 +10,7 @@ between words
 
 except with start
 ```
-^((?!start).)*text1
+(^(?!.*start).*?(?:sta|rt).*|text)|\2.*\1
 ```
 
 2 words same line
