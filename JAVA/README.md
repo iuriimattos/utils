@@ -12,3 +12,27 @@ public static BigDecimal roundWhenMultipleOf5(BigDecimal bigDecimal) {
   }
 }
 ```
+
+CREDITS https://stackoverflow.com/a/58560435
+```
+public class NumberUtils {
+
+    private NumberUtils() {
+    }
+
+    public static <T extends Number> T getNumberOrZero(T number, Class<? extends Number> clazz) {
+        return Optional.ofNullable(number)
+            .orElse(getZeroValue(clazz));
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T extends Number> T getZeroValue(Class<? extends Number> clazz) {
+        try {
+            Constructor<? extends Number> constructor = clazz.getDeclaredConstructor(String.class);
+            return (T) constructor.newInstance("0");
+        } catch (ReflectiveOperationException e) {
+            throw new IllegalArgumentException("Can't get zero value ", e);
+        }
+    }
+}
+```
