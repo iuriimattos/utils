@@ -1,6 +1,10 @@
 # https://stackoverflow.com/a/52651577
 Set-PSReadLineOption -Colors @{Operator = "Blue"; Parameter = "Blue"; Command = "Blue";String = "Blue"}
 # GIT alias: status
+function gclone() {
+    git clone $args[0]
+}
+# GIT alias: status
 function gs() {
     git status
 }
@@ -14,11 +18,11 @@ function gfo() {
 }
 # GIT alias: checkout
 function gco() {
-    git checkout "$1"
+    git checkout $args[0]
 }
 # GIT alias: branch delete (TODO)
 function gbdel() {
-    git branch -D "$1"
+    git branch -D $args[0]
 }
 # GIT alias: publish local branch to remote
 function gpo() {
