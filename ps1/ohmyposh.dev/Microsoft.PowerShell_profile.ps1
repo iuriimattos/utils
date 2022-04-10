@@ -31,9 +31,9 @@ function Get-GitPull { & git pull $args }
 New-Alias -Name gpl -Value Get-GitPull -Force -Option AllScope
 function Get-GitCheckout { & git checkout $args }
 New-Alias -Name gco -Value Get-GitCheckout -Force -Option AllScope
-function Get-GitResetHard & git reset --hard $args }
+function Get-GitResetHard { & git reset --hard $args }
 New-Alias -Name grh -Value Get-GitResetHard -Force -Option AllScope
-function Get-GitResetHard & git reset --soft $args }
+function Get-GitResetSoft { & git reset --soft $args }
 New-Alias -Name grs -Value Get-GitResetHard -Force -Option AllScope
 function Run-CleanInstall { & mvn clean install -DskipTests }
 New-Alias -Name mvnci -Value Run-CleanInstall -Force -Option AllScope
