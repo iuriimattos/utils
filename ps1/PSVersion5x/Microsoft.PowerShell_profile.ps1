@@ -7,6 +7,9 @@
 # PSRemotingProtocolVersion      2.3
 #SerializationVersion           1.1.0.1
 
+# https://stackoverflow.com/a/52651577
+Set-PSReadLineOption -Colors @{Operator = "Blue"; Parameter = "Blue"; Command = "Blue";String = "Blue"}
+
 Import-Module posh-git
 Import-Module oh-my-posh
 Set-PoshPrompt -Theme  ~/mypwsh10k.omp.json
