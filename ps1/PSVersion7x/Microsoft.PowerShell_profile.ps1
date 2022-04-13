@@ -16,6 +16,16 @@ function gclone() {
     git clone $args[0]
 }
 
+# GIT alias: stash
+function gstash() {
+    git stash
+}
+
+# GIT alias: stash pop
+function gstashpop() {
+    git stash pop
+}
+
 # GIT alias: status
 function gs() {
     git status
