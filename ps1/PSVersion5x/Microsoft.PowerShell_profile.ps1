@@ -14,6 +14,9 @@ Import-Module posh-git
 Import-Module oh-my-posh
 Set-PoshPrompt -Theme  ~/mypwsh10k.omp.json
 
+function Get-GitLog { & git log --graph --oneline --decorate $args }
+New-Alias -Name gl -Value Get-GitLog -Force -Option AllScope
+
 function Get-GitTree { & git log --graph --oneline --decorate $args }
 New-Alias -Name gt -Value Get-GitTree -Force -Option AllScope
 
@@ -31,6 +34,9 @@ New-Alias -Name gf -Value Get-GitFetch -Force -Option AllScope
 
 function Get-GitBranch { & git branch $args }
 New-Alias -Name gb -Value Get-GitBranch -Force -Option AllScope
+
+function Get-GitBranchDelete { & git branch -D $args }
+New-Alias -Name gbdel -Value Get-GitBranchDelete -Force -Option AllScope
 
 function Get-GitRemote { & git remote -v $args }
 New-Alias -Name gr -Value Get-GitRemote -Force -Option AllScope
@@ -51,7 +57,7 @@ function Get-GitResetHard { & git reset --hard $args }
 New-Alias -Name grh -Value Get-GitResetHard -Force -Option AllScope
 
 function Get-GitResetSoft { & git reset --soft $args }
-New-Alias -Name grs -Value Get-GitResetHard -Force -Option AllScope
+New-Alias -Name grs -Value Get-GitResetSoft -Force -Option AllScope
 
 function Run-CleanInstall { & mvn clean install -DskipTests }
 New-Alias -Name mvnci -Value Run-CleanInstall -Force -Option AllScope
