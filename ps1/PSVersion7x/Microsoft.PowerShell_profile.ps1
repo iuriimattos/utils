@@ -98,7 +98,9 @@ function prompt {
     $parentFolderName = Split-Path -leaf -path $($parentFullPath)
     $currentFolderName = Split-Path -leaf -path (Get-Location)
     Write-Host "$($parentFolderName)\$($currentFolderName)"
-    if ($status = Get-GitStatus -Force) $prompt += "$(Write-GitBranchStatus $status -NoLeadingSpace)$(Write-GitBranchName $status)"
+    if ($status = Get-GitStatus -Force) {
+	$prompt += "$(Write-GitBranchStatus $status -NoLeadingSpace)$(Write-GitBranchName $status)"
+    }
     $prompt += "$(if ($PsDebugContext) {' [DBG]:'} else {''})$('>' * ($nestedPromptLevel + 1)) "
     $LASTEXITCODE = $origLastExitCode
     $prompt
