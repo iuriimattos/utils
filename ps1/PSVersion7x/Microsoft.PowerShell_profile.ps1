@@ -66,8 +66,18 @@ function gbdel() {
     git branch -D $args[0]
 }
 
+# GIT alias: pulling upstream branch
+function gpull() {
+    git pull
+}
+
+# GIT alias: pulling origin choose branch
+function gpullo() {
+    git pull origin $args[0]
+}
+
 # GIT alias: publish local branch to remote
-function gpo() {
+function gpush() {
     git push origin --set-upstream $(git rev-parse --abbrev-ref HEAD)
 }
 
@@ -87,7 +97,7 @@ function gsave() {
         $msg = "wip"
     }
     git commit -m "$msg"
-    gpo
+    gpush
 }
 
 # GIT alias: for git commit wip
