@@ -102,6 +102,7 @@ function gsave() {
 
 # GIT alias: for git commit wip
 function gwip() {
+    git add .  
     git commit -m wip
 }
 
