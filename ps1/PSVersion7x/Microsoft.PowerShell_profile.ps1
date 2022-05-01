@@ -16,6 +16,11 @@ function gclone() {
     git clone $args[0]
 }
 
+# GIT alias: log
+function gll() {
+    git log
+}
+
 # GIT alias: stash
 function gstash() {
     git stash
@@ -102,6 +107,7 @@ function gsave() {
 
 # GIT alias: for git commit wip
 function gwip() {
+    git add .  
     git commit -m wip
 }
 
