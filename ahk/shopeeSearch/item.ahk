@@ -2,13 +2,17 @@
 ; headset
 
 
-str := "usb dock"
+str := "usb"
 keyword := EncodeDecodeURI(str)
 
 Run, chrome.exe https://shopee.sg/search?keyword=%keyword%&page=0&sortBy=sales
+Sleep, 1000
 Run, chrome.exe https://shopee.ph/search?keyword=%keyword%&page=0&sortBy=sales
+Sleep, 1000
 Run, chrome.exe https://shopee.co.th/search?keyword=%keyword%&page=0&sortBy=sales
+Sleep, 1000
 Run, chrome.exe https://shopee.com.my/search?keyword=%keyword%&page=0&sortBy=sales
+Sleep, 1000
 Run, chrome.exe https://shopee.tw/search?keyword=%keyword%&page=0&sortBy=sales
 
 
