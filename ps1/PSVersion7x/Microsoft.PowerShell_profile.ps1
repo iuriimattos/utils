@@ -51,6 +51,11 @@ function gco() {
     git checkout $args[0]
 }
 
+# GIT alias: reset
+function greset() {
+    git reset $args[0]
+}
+
 # GIT alias: reset --hard
 function grh() {
     git reset --hard $args[0]
@@ -59,11 +64,6 @@ function grh() {
 # GIT alias: reset --soft
 function grs() {
     git reset --soft $args[0]
-}
-
-# GIT alias: checkout
-function gco() {
-    git checkout $args[0]
 }
 
 # GIT alias: branch delete (TODO)
