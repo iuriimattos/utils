@@ -1,3 +1,4 @@
+Menu, Tray, Icon , Shell32.dll, 23, 1
 ; Google Search
 ; Fanatic Guru
 ; 2014 08 25
