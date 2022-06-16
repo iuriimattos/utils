@@ -2,6 +2,7 @@
 Esc::ExitApp
 F1::
 Send, ^{Click}
+return
 F2::
 Toggle := !Toggle
 loop
