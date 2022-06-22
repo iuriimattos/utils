@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Root>
+    <Scene height="960" width="540" id="com.facebook.katana" rotateAngle="0" horizonFlag="0" opacity="20">
+        <Item pos="246,456" height="48" width="68" macro="size 540 960HUAN_HANGkey AHUAN_HANGdelay 1000HUAN_HANGkey ZHUAN_HANGdelay 2000HUAN_HANGkey YHUAN_HANGdelay 3000HUAN_HANGHUAN_HANGkey BHUAN_HANGdelay 1000HUAN_HANGkey ZHUAN_HANGdelay 2000HUAN_HANGkey YHUAN_HANGdelay 3000HUAN_HANGHUAN_HANGkey CHUAN_HANGdelay 1000HUAN_HANGkey ZHUAN_HANGdelay 2000HUAN_HANGkey YHUAN_HANGdelay 3000HUAN_HANGHUAN_HANGkey DHUAN_HANGdelay 1000HUAN_HANGkey ZHUAN_HANGdelay 2000HUAN_HANGkey YHUAN_HANGdelay 3000HUAN_HANGHUAN_HANGkey EHUAN_HANGdelay 1000HUAN_HANGkey ZHUAN_HANGdelay 2000HUAN_HANGkey YHUAN_HANGdelay 3000HUAN_HANGHUAN_HANGkey FHUAN_HANGdelay 1000HUAN_HANGkey ZHUAN_HANGdelay 2000HUAN_HANGkey YHUAN_HANGdelay 3000HUAN_HANGHUAN_HANGkey GHUAN_HANGdelay 1000HUAN_HANGkey ZHUAN_HANGdelay 2000HUAN_HANGkey YHUAN_HANGdelay 3000HUAN_HANGHUAN_HANGkey HHUAN_HANGdelay 1000HUAN_HANGkey ZHUAN_HANGdelay 2000HUAN_HANGkey YHUAN_HANGdelay 3000HUAN_HANGHUAN_HANGkey IHUAN_HANGdelay 1000HUAN_HANGkey ZHUAN_HANGdelay 2000HUAN_HANGkey YHUAN_HANGdelay 3000HUAN_HANGHUAN_HANGclick backHUAN_HANGdelay 3000HUAN_HANGkey X" type="9" clicked_tip="">
+            <Key value="112" keyString="F1" description="" modifier_value="0" keyLevel="">
+                <Point>270,480</Point>
+            </Key>
+        </Item>
+        <Item pos="487,246" finger_count="1" height="48" width="48" type="1" clicked_tip="">
+            <Key value="65" keyString="A" description="" modifier_value="0" keyLevel="">
+                <Point>511,270</Point>
+            </Key>
+        </Item>
+        <Item pos="490,325" finger_count="1" height="48" width="48" type="1" clicked_tip="">
+            <Key value="66" keyString="B" description="" modifier_value="0" keyLevel="">
+                <Point>514,349</Point>
+            </Key>
+        </Item>
+        <Item pos="489,402" finger_count="1" height="48" width="48" type="1" clicked_tip="">
+            <Key value="67" keyString="C" description="" modifier_value="0" keyLevel="">
+                <Point>513,426</Point>
+            </Key>
+        </Item>
+        <Item pos="489,477" finger_count="1" height="48" width="48" type="1" clicked_tip="">
+            <Key value="68" keyString="D" description="" modifier_value="0" keyLevel="">
+                <Point>513,501</Point>
+            </Key>
+        </Item>
+        <Item pos="490,551" finger_count="1" height="48" width="48" type="1" clicked_tip="">
+            <Key value="69" keyString="E" description="" modifier_value="0" keyLevel="">
+                <Point>514,575</Point>
+            </Key>
+        </Item>
+        <Item pos="488,629" finger_count="1" height="48" width="48" type="1" clicked_tip="">
+            <Key value="70" keyString="F" description="" modifier_value="0" keyLevel="">
+                <Point>512,653</Point>
+            </Key>
+        </Item>
+        <Item pos="490,703" finger_count="1" height="48" width="48" type="1" clicked_tip="">
+            <Key value="71" keyString="G" description="" modifier_value="0" keyLevel="">
+                <Point>514,727</Point>
+            </Key>
+        </Item>
+        <Item pos="490,779" finger_count="1" height="48" width="48" type="1" clicked_tip="">
+            <Key value="72" keyString="H" description="" modifier_value="0" keyLevel="">
+                <Point>514,803</Point>
+            </Key>
+        </Item>
+        <Item pos="490,856" finger_count="1" height="48" width="48" type="1" clicked_tip="">
+            <Key value="73" keyString="I" description="" modifier_value="0" keyLevel="">
+                <Point>514,880</Point>
+            </Key>
+        </Item>
+        <Item pos="13,910" finger_count="1" height="48" width="48" type="1" clicked_tip="">
+            <Key value="90" keyString="Z" description="" modifier_value="0" keyLevel="">
+                <Point>37,934</Point>
+            </Key>
+        </Item>
+        <Item pos="390,508" finger_count="1" height="48" width="48" type="1" clicked_tip="">
+            <Key value="89" keyString="Y" description="" modifier_value="0" keyLevel="">
+                <Point>414,532</Point>
+            </Key>
+        </Item>
+        <Item pos="17,408" finger_count="1" height="48" width="48" type="1" clicked_tip="">
+            <Key value="88" keyString="X" description="" modifier_value="0" keyLevel="">
+                <Point>41,432</Point>
+            </Key>
+        </Item>
+        <Item pos="490,929" finger_count="1" height="48" width="48" type="1" clicked_tip="">
+            <Key value="74" keyString="J" description="" modifier_value="0" keyLevel="">
+                <Point>514,953</Point>
+            </Key>
+        </Item>
+    </Scene>
+</Root>
