@@ -1,4 +1,7 @@
 Menu, Tray, Icon , Shell32.dll, 134, 1
+;
+;credits github.com/GorvGoyl/Autohotkey-Scripts-Windows/blob/master/battery_alert.ahk
+;
 ; Battery notification
 ;
 ; When the battery is charged, a notification
