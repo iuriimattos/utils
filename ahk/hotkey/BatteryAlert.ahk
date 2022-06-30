@@ -11,11 +11,11 @@ Menu, Tray, Icon , Shell32.dll, 134, 1
 ; will appear to tell the user to plug in the charger
 
 ; run script as admin (reload if not as admin) 
-if not A_IsAdmin
-{   
-   Run *RunAs "%A_AhkPath%" "%A_ScriptFullPath%"
-   ExitApp
-}
+;if not A_IsAdmin
+;{   
+;   Run *RunAs "%A_AhkPath%" "%A_ScriptFullPath%"
+;   ExitApp
+;}''
 
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 ; #Warn  ; Enable warnings to assist with detecting common errors.
@@ -28,7 +28,7 @@ SetTitleMatchMode 2
 lowBatteryPercentage := 90
 ;
 
-sleepTime := 60
+sleepTime := 30
 chargedPercentage := 99
 percentage := "%"
 
@@ -44,38 +44,38 @@ batteryLifePercent:=ReadInteger(&powerstatus,2)
 ;Is the battery charged higher than 99%
 if (batteryLifePercent > chargedPercentage){ ;Yes. 
 
-	if (acLineStatus == 1){ ;Only notify me once
-		if (batteryLifePercent == 255){
-			sleepTime := 60
-			}
-		else{
-			title= Battery: %batteryLifePercent%`%
-			popupmfk(title,"Remove Charger", , , 1)
-			;Format the message box
-			SoundBeep, 1500, 200
-			; MsgBox, %output% ;Notify me.
-			sleepTime := 600
-		}
-	}
-	else{
-		sleepTime := 60
-	}
+        if (acLineStatus == 1){ ;Only notify me once
+                if (batteryLifePercent == 255){
+                        sleepTime := 30
+                        }
+                else{
+                        title= Battery: %batteryLifePercent%`%
+                        popupmfk(title,"Remove Charger", , , 1)
+                        ;Format the message box
+                        SoundBeep, 1500, 200
+                        ; MsgBox, %output% ;Notify me.
+                        sleepTime := 30
+                }
+        }
+        else{
+                sleepTime := 30
+        }
 }
 
 if (batteryLifePercent < lowBatteryPercentage){ ;Yes. 
 
-	if (acLineStatus == 0){ ;Only notify me once
-		;Format the message box
-		; output=PLUG IN THE CHARGING CABLE.`nBattery Life: %batteryLifePercent%%percentage%
-		title= Battery: %batteryLifePercent%`%
-		SoundBeep, 1500, 200
-		; MsgBox, %output% ;Notify me.
-		popupmfk(title,"Plug-in Charger", 7000, , 1)
-		sleepTime := 300
-	}
-	else{
-		sleepTime := 60
-	}
+        if (acLineStatus == 0){ ;Only notify me once
+                ;Format the message box
+                ; output=PLUG IN THE CHARGING CABLE.`nBattery Life: %batteryLifePercent%%percentage%
+                title= Battery: %batteryLifePercent%`%
+                SoundBeep, 1500, 200
+                ; MsgBox, %output% ;Notify me.
+                popupmfk(title,"Plug-in Charger", 7000, , 1)
+                sleepTime := 30
+        }
+        else{
+                sleepTime := 30
+        }
 }
 
 
@@ -86,7 +86,7 @@ sleep, sleepTime*1000 ;sleep for 5 seconds
 ReadInteger( p_address, p_offset)
 {
   loop, 1
-	value := 0+( *( ( p_address+p_offset )+( a_Index-1 ) ) << ( 8* ( a_Index-1 ) ) )
+        value := 0+( *( ( p_address+p_offset )+( a_Index-1 ) ) << ( 8* ( a_Index-1 ) ) )
   return, value
 }
 
