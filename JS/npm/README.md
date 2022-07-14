@@ -14,3 +14,9 @@ npm ls
 ```
 
 > lista uma arvore com o vinculo (relacao) que cada pacote tem com os instalados
+
+```
+npm i (package)@(versao)
+```
+
+> instala uma versao especifica do pacote especifico
