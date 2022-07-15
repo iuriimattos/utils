@@ -20,3 +20,14 @@ npm i (package)@(version)
 ```
 
 > instala uma versao especifica do pacote especifico
+
+```
+npm config set registry https://registry.npmjs.org/
+```
+
+> busca versões de pacotes em repositorio epecifico
+> exemplo:
+
+```
+npm config set registry=http://packages.versions/repository/npm-group/
+```
