@@ -1,6 +1,17 @@
 # https://stackoverflow.com/a/52651577
 Set-PSReadLineOption -Colors @{Operator = "Blue"; Parameter = "Blue"; Command = "Blue";String = "Blue"}
 
+# https://stackoverflow.com/a/69565104
+function rmrf([string]$Path) {
+    try {
+        Remove-Item -Recurse -ErrorAction:Stop $Path
+    } catch [System.Management.Automation.ItemNotFoundException] {
+        # Ignore
+        $Error.Clear()
+    }
+}
+
+
 # Maven: package
 function mvncp() {
     mvn clean package
@@ -49,6 +60,11 @@ function gfo() {
 # GIT alias: checkout
 function gco() {
     git checkout $args[0]
+}
+
+# GIT alias: checkout
+function gcob() {
+    git checkout -b $args[0]
 }
 
 # GIT alias: reset
