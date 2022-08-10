@@ -7,6 +7,7 @@
 MButton::Reload
 '::'
 Pause::Reload
+Delete::ExitApp
 
 set() {
     Send, {TAB}
@@ -28,6 +29,7 @@ reset() {
                 Send, {LButton}
                 Sleep 750
                 set()
+                Sleep 100
                 Send, {LButton}
                 Reload
         }       
