@@ -22,6 +22,11 @@ function mvnci() {
     mvn clean install -DskipTests
 }
 
+# Maven: install
+function mvnciu() {
+    mvn clean install -DskipTests -U
+}
+
 # GIT alias: status
 function gclone() {
     git clone $args[0]
@@ -141,7 +146,7 @@ function prompt {
     $currentFolderName = Split-Path -leaf -path (Get-Location)
     Write-Host "$($parentFolderName)\$($currentFolderName)"
     if ($status = Get-GitStatus -Force) {
-	$prompt += "$(Write-GitBranchStatus $status -NoLeadingSpace)$(Write-GitBranchName $status)"
+    $prompt += "$(Write-GitBranchStatus $status -NoLeadingSpace)$(Write-GitBranchName $status)"
     }
     $prompt += "$(if ($PsDebugContext) {' [DBG]:'} else {''})$('>' * ($nestedPromptLevel + 1)) "
     $LASTEXITCODE = $origLastExitCode
