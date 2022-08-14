@@ -2,6 +2,8 @@
 [user]
 	name = iuriimattos
 	email = iuriimattos@gmail.com
+[includeIf "gitdir:~/work/"]
+	path = ~/work/.gitconfig	
 [core]
 	editor = \"C:\\Users\\iuri\\AppData\\Local\\Programs\\Microsoft VS Code Insiders\\Code - Insiders.exe\" --wait
 	longpaths = true
