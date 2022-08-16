@@ -72,37 +72,61 @@ return
 }
 }
 
+;XButton2 & LButton::
+;esize(0,0,965,545)
+;magnifyChecker(0)
+;mouseMove(0)
+;return
+;+F10::
+;Resize(0,0,1102,622)
+;magnifyChecker(1)
+;mouseMove(1)
+;return
+;+F11::
+;Resize(0,0,1285,725)
+;magnifyChecker(2)
+;mouseMove(2)
+;return
+;+F12::
+;Resize(0,0,1545,870)
+;magnifyChecker(3)
+;mouseMove(3)
+;return
+;XButton2 & RButton::
+;Resize(0,0,1928,1050)
+;magnifyChecker(4)
+;mouseMove(4)
+;return
 
-
-XButton2 & LButton::
++F1::
 Resize(0,0,965,545)
 magnifyChecker(0)
 mouseMove(0)
 return
 
 
-+F10::
++F2::
 Resize(0,0,1102,622)
 magnifyChecker(1)
 mouseMove(1)
 return
 
 
-+F11::
++F3::
 Resize(0,0,1285,725)
 magnifyChecker(2)
 mouseMove(2)
 return
 
 
-+F12::
++F4::
 Resize(0,0,1545,870)
 magnifyChecker(3)
 mouseMove(3)
 return
 
 
-XButton2 & RButton::
++F5::
 Resize(0,0,1928,1050)
 magnifyChecker(4)
 mouseMove(4)
