@@ -22,12 +22,12 @@ function mvnci() {
     mvn clean install -DskipTests
 }
 
-# Maven: install
+# Maven: update snapshots
 function mvnciu() {
     mvn clean install -DskipTests -U
 }
 
-# GIT alias: status
+# GIT alias: clone
 function gclone() {
     git clone $args[0]
 }
@@ -67,8 +67,9 @@ function gco() {
     git checkout $args[0]
 }
 
-# GIT alias: checkout
+# GIT alias: checkout and delete branch
 function gcob() {
+    git branch -D $args[0]
     git checkout -b $args[0]
 }
 
@@ -87,18 +88,13 @@ function grs() {
     git reset --soft $args[0]
 }
 
-# GIT alias: branch delete (TODO)
-function gbdel() {
-    git branch -D $args[0]
-}
-
 # GIT alias: pulling upstream branch
-function gpull() {
+function gpp() {
     git pull
 }
 
 # GIT alias: pulling origin choose branch
-function gpullo() {
+function gppo() {
     git pull origin $args[0]
 }
 
