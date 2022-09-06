@@ -133,6 +133,7 @@ function gcom() {
     git commit -m $args[0]
 }
 
+# https://github.com/dahlbyk/posh-git#prerequisites
 # Custom Posh-Git
 Import-Module posh-git
 function prompt {
