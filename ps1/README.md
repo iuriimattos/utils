@@ -1,3 +1,5 @@
+# Configuration
+
 ```
 $PSversionTable
 ```
@@ -15,3 +17,8 @@ W
 [Creating aliases in PowerShell for git commands?](https://stackoverflow.com/questions/2858484/creating-aliases-in-powershell-for-git-commands)
 
 [Opening up Windows Terminal with elevated privileges, from within Windows Terminal](https://stackoverflow.com/a/62542633)
+
+# Script
+
+[How to set an alias in Windows Command Line?](https://superuser.com/a/1674903)
+pushd "C:\Users\iuri.matos\vivere\back\pioneer\cacheable"
