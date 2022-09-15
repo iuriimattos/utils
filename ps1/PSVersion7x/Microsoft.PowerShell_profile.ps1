@@ -84,8 +84,9 @@ function gco() {
     git checkout $args[0]
 }
 
-# GIT alias: checkout and delete branch
+# GIT alias: checkout and delete branch and delete branch
 function gcob() {
+    git branch -D $args[0]
     git branch -D $args[0]
     git checkout -b $args[0]
 }
