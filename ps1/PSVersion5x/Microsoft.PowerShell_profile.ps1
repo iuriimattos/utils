@@ -67,6 +67,6 @@ New-Alias -Name mvnci -Value Run-CleanInstall -Force -Option AllScope
 
 function Get-GitCommitWipPush {
     gwip
-    gp
+    gpp
 }
 New-Alias -Name gsave -Value Get-GitCommitWipPush -Force -Option AllScope
