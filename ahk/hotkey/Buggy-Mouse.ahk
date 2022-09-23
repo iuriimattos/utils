@@ -1,3 +1,4 @@
+Menu, Tray, Icon , Shell32.dll, 30, 1
 Pause::ExitApp
 /*
 ** Buggy-Mouse.ahk - Fix a buggy mouse. Stop it from double-clicking when you try to single-click.
