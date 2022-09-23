@@ -10,6 +10,9 @@
 # https://stackoverflow.com/a/52651577
 Set-PSReadLineOption -Colors @{Operator = "Red"; Parameter = "Red"; Command = "Red"; String = "Red" }
 
+function Get-GitClone { & git clone $args }
+New-Alias -Name gclone -Value Get-GitClone -Force -Option AllScope
+
 function Get-GitLog { & git log }
 New-Alias -Name gl -Value Get-GitLog -Force -Option AllScope
 
