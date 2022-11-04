@@ -1,5 +1,8 @@
 Menu, Tray, Icon , Shell32.dll, 75, 1
 
+if !A_IsAdmin
+    Run, % "*RunAs " (A_IsCompiled ? "" : A_AhkPath " ") Chr(34) A_ScriptFullPath Chr(34)
+
 ; credits
 ; https://stackoverflow.com/a/57323509
 Capslock::
