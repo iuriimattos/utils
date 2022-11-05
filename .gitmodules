@@ -1,3 +1,6 @@
 [submodule "ahk/translator"]
 	path = ahk/translator
 	url = https://github.com/iurimattos/copy2Translate.git
+[submodule "ahk/chrome/ahk/chrome/Chrome.ahk"]
+	path = ahk/chrome/ahk/chrome/Chrome.ahk
+	url = https://github.com/G33kDude/Chrome.ahk.git
