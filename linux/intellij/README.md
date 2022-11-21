@@ -1,0 +1,1 @@
+[Unable to use IntelliJ IDEA keyboard shortcuts on Ubuntu](https://askubuntu.com/a/1032688/1058011)

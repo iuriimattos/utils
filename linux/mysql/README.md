@@ -1,0 +1,1 @@
+[Reset MySQL 5.7 root password](https://www.techandme.se/reset-mysql-5-7-root-password/)

@@ -2,7 +2,7 @@
 ; headset
 
 
-str := "anti static"
+str := "bluetooth"
 keyword := EncodeDecodeURI(str)
 
 Run, chrome.exe https://shopee.sg/search?keyword=%keyword%&page=0&sortBy=sales
