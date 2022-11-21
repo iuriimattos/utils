@@ -1,3 +1,5 @@
+[FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory when processing large files with fs](https://stackoverflow.com/a/63792740)
+
 pacote == package
 
 pacotes == packages
