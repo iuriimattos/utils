@@ -93,6 +93,12 @@ git push remote branch
 git push remote branch -f
 ```
 
+> aborta o rebase
+
+```
+git rebase --abort
+```
+
 > força a atualização de uma branch do repositorio remoto
 
 ```
