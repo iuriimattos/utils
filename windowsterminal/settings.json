@@ -36,7 +36,8 @@
     {
         "defaults": 
         {
-            "colorScheme": "One Half Light",
+            "hidden": false,
+            "colorScheme": "My Tango Light",
             "cursorShape": "underscore",
             "font": 
             {
@@ -83,6 +84,29 @@
     },
     "schemes": 
     [
+        {
+            "background": "#F9F9F9",
+            "black": "#000000",
+            "blue": "#2F5AF3",
+            "brightBlack": "#000000",
+            "brightBlue": "#2F5AF3",
+            "brightCyan": "#3F953A",
+            "brightGreen": "#3F953A",
+            "brightPurple": "#A00095",
+            "brightRed": "#DE3E35",
+            "brightWhite": "#FFFFFF",
+            "brightYellow": "#D2B67C",
+            "cyan": "#3F953A",
+            "foreground": "#2A2C33",
+            "green": "#3F953A",
+            "name": "AtomOneLight",
+            "cursorColor": "#FF0000",
+            "purple": "#950095",
+            "red": "#DE3E35",
+            "selectionBackground": "#FFFFFF",
+            "white": "#BBBBBB",
+            "yellow": "#D2B67C"
+        },
         {
             "background": "#0C0C0C",
             "black": "#0C0C0C",
@@ -245,6 +269,29 @@
             "yellow": "#C4A000"
         },
         {
+            "name": "My Tango Light",
+            "background": "#FFFFFF",
+            "black": "#29430F",
+            "blue": "#C2D0E3",
+            "brightBlack": "#555753",
+            "brightBlue": "#729FCF",
+            "brightCyan": "#0F4343",
+            "brightGreen": "#29430F",
+            "brightPurple": "#332632",
+            "brightRed": "#470c0c",
+            "brightWhite": "#2F2F2F",
+            "brightYellow": "#7E7427",
+            "cursorColor": "#29430F",
+            "cyan": "#012d2e",
+            "foreground": "#555753",
+            "green": "#172e01",
+            "purple": "#231824",
+            "red": "#3d0000",
+            "selectionBackground": "#FFFFFF",
+            "white": "#0c1404",
+            "yellow": "#3a3000"
+        },        
+        {
             "background": "#FFFFFF",
             "black": "#000000",
             "blue": "#3465A4",
@@ -266,29 +313,6 @@
             "selectionBackground": "#FFFFFF",
             "white": "#D3D7CF",
             "yellow": "#C4A000"
-        },
-        {
-            "background": "#300A24",
-            "black": "#171421",
-            "blue": "#0037DA",
-            "brightBlack": "#767676",
-            "brightBlue": "#08458F",
-            "brightCyan": "#2C9FB3",
-            "brightGreen": "#26A269",
-            "brightPurple": "#A347BA",
-            "brightRed": "#C01C28",
-            "brightWhite": "#F2F2F2",
-            "brightYellow": "#A2734C",
-            "cursorColor": "#FFFFFF",
-            "cyan": "#3A96DD",
-            "foreground": "#FFFFFF",
-            "green": "#26A269",
-            "name": "Ubuntu-ColorScheme",
-            "purple": "#881798",
-            "red": "#C21A23",
-            "selectionBackground": "#FFFFFF",
-            "white": "#CCCCCC",
-            "yellow": "#A2734C"
         },
         {
             "background": "#000000",
