@@ -37,7 +37,7 @@
         "defaults": 
         {
             "hidden": false,
-            "colorScheme": "My Tango Light",
+            "colorScheme": "iuri Tango Light",
             "cursorShape": "underscore",
             "font": 
             {
@@ -269,12 +269,12 @@
             "yellow": "#C4A000"
         },
         {
-            "name": "My Tango Light",
+            "name": "iuri Tango Light",
             "background": "#FFFFFF",
             "black": "#29430F",
-            "blue": "#C2D0E3",
+            "blue": "#e5e5e5",
             "brightBlack": "#555753",
-            "brightBlue": "#729FCF",
+            "brightBlue": "#2d3f52",
             "brightCyan": "#0F4343",
             "brightGreen": "#29430F",
             "brightPurple": "#332632",
@@ -284,11 +284,11 @@
             "cursorColor": "#29430F",
             "cyan": "#012d2e",
             "foreground": "#555753",
-            "green": "#172e01",
+            "green": "#8bab70",
             "purple": "#231824",
             "red": "#3d0000",
-            "selectionBackground": "#FFFFFF",
-            "white": "#0c1404",
+            "selectionBackground": "#29430F",
+            "white": "#3d0000",
             "yellow": "#3a3000"
         },        
         {
