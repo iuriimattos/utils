@@ -10,6 +10,10 @@
 # https://stackoverflow.com/a/52651577
 Set-PSReadLineOption -Colors @{Operator = "Red"; Parameter = "Red"; Command = "Red"; String = "Red" }
 
+# https://stackoverflow.com/a/43633385
+function copyAbsolutePath { & (pwd).Path | Set-Clipboard }
+New-Alias -Name cppwd -Value copyAbsolutePath -Force -Option AllScope
+
 function Get-GitClone { & git clone $args }
 New-Alias -Name gclone -Value Get-GitClone -Force -Option AllScope
 
