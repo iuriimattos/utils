@@ -1,5 +1,23 @@
 Menu, Tray, Icon , Shell32.dll, 30, 1
-Pause::ExitApp
+
+;Pause::ExitApp
+
+Pause::
+	Suspend, permit
+	if (State = 0)
+	{
+	   SoundPlay *48
+	   State++
+	}
+	Else
+	{
+	   State := 0
+	   SoundPlay *16
+	}
+	Suspend, Toggle
+Return
+
+
 /*
 ** Buggy-Mouse.ahk - Fix a buggy mouse. Stop it from double-clicking when you try to single-click.
 **
