@@ -1,0 +1,1 @@
+[Really wish there was an “Open Folder” in current window option])(https://forum.sublimetext.com/t/really-wish-there-was-an-open-folder-in-current-window-option/23378/2)

@@ -3,7 +3,12 @@
 # ===============================
 
 # https://stackoverflow.com/a/52651577
-Set-PSReadLineOption -Colors @{Operator = "Blue"; Parameter = "Blue"; Command = "Blue";String = "Blue"}
+Set-PSReadLineOption -Colors @{Operator = "Red"; Parameter = "Red"; Command = "Red";String = "Red"}
+
+# https://stackoverflow.com/a/43633385
+function cppwd() {
+    (pwd).Path | CLIP
+}
 
 # https://stackoverflow.com/a/69565104
 function rmrf([string]$Path) {
@@ -84,9 +89,8 @@ function gco() {
     git checkout $args[0]
 }
 
-# GIT alias: checkout and delete branch and delete branch
+# GIT alias: checkout and delete branch
 function gcob() {
-    git branch -D $args[0]
     git branch -D $args[0]
     git checkout -b $args[0]
 }

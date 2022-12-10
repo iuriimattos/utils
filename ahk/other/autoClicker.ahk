@@ -1,12 +1,12 @@
 #MaxThreadsPerHotkey 3
 
-^z::
+XButton2::
 Toggle := !Toggle
 Loop
 {
 	If (!Toggle)
 		Break
 	Click
-	Sleep 83 ; Make this number higher for slower clicks, lower for faster.
+	Sleep 500 ; Make this number higher for slower clicks, lower for faster.
 }
 Return
