@@ -1,4 +1,3 @@
-;https://stackoverflow.com/a/53738082
 #SingleInstance force
 Gui, +AlwaysOnTop -MaximizeBox ; -Caption +Resize -MinimizeBox +Disabled -SysMenu -Owner +OwnDialogs
 Gui, Add, Text, center y10 h50 w300 vVar,  %KeypressValue%

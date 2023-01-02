@@ -1,3 +1,4 @@
+#SingleInstance, Force
 Menu, Tray, Icon , Shell32.dll, 31, 1
 
 Insert::Pause

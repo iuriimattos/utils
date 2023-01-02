@@ -1,4 +1,3 @@
-;https://stackoverflow.com/a/53738082
 ;KeypressValueToREG.ahk comes from KeypressOSD.ahk that was Created by Author RaptorX
 ; Open this Script in Wordpad and For Changelog look to the Bottom of the script. 
 ;This code works with a getkeyname from a Dllcall (See Bottom Script- by Lexikos)
