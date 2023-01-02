@@ -36,43 +36,49 @@
     {
         "defaults": 
         {
+            "hidden": false,
+            "colorScheme": "iuri Tango Light",
+            "cursorShape": "underscore",
             "font": 
             {
-                "size": 4
-            },
-            "selectionBackground": "#FF0000"
+                "face": "MesloLGS NF"
+            }
         },
         "list": 
         [
-            {
-                "colorScheme": "AtomOneLight",
-                "cursorShape": "filledBox",
-                "experimental.retroTerminalEffect": false,
-                "font": 
-                {
-                    "face": "Fira Code",
-                    "size": 18
-                },
-                "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
-                "hidden": false,
-                "name": "pwsh",
-                "source": "Windows.Terminal.PowershellCore"
-            },
             {
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
                 "hidden": false,
                 "name": "Windows PowerShell"
             },
             {
+                "guid": "{51855cb2-8cce-5362-8f54-464b92b32386}",
+                "hidden": false,
+                "name": "Ubuntu",
+                "source": "CanonicalGroupLimited.Ubuntu_79rhkp1fndgsc"
+            },
+            {
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
                 "hidden": false,
-                "name": "Prompt de comando"
+                "name": "Command Prompt"
+            },
+            {
+                "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+                "hidden": false,
+                "name": "PowerShell",
+                "source": "Windows.Terminal.PowershellCore"
             },
             {
                 "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
                 "hidden": false,
                 "name": "Azure Cloud Shell",
                 "source": "Windows.Terminal.Azure"
+            },
+            {
+                "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+                "hidden": true,
+                "name": "Ubuntu",
+                "source": "Windows.Terminal.Wsl"
             }
         ]
     },
@@ -263,6 +269,29 @@
             "yellow": "#C4A000"
         },
         {
+            "name": "iuri Tango Light",
+            "background": "#FFFFFF",
+            "black": "#29430F",
+            "blue": "#e5e5e5",
+            "brightBlack": "#555753",
+            "brightBlue": "#2d3f52",
+            "brightCyan": "#0F4343",
+            "brightGreen": "#29430F",
+            "brightPurple": "#332632",
+            "brightRed": "#470c0c",
+            "brightWhite": "#2F2F2F",
+            "brightYellow": "#7E7427",
+            "cursorColor": "#29430F",
+            "cyan": "#012d2e",
+            "foreground": "#555753",
+            "green": "#8bab70",
+            "purple": "#231824",
+            "red": "#3d0000",
+            "selectionBackground": "#29430F",
+            "white": "#3d0000",
+            "yellow": "#3a3000"
+        },        
+        {
             "background": "#FFFFFF",
             "black": "#000000",
             "blue": "#3465A4",
@@ -308,5 +337,8 @@
             "white": "#C0C0C0",
             "yellow": "#808000"
         }
-    ]
+    ],
+    "startOnUserLogin": true,
+    "theme": "light",
+    "themes": []
 }
