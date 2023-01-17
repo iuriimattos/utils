@@ -10,10 +10,6 @@
 # https://stackoverflow.com/a/52651577
 Set-PSReadLineOption -Colors @{Operator = "Red"; Parameter = "Red"; Command = "Red"; String = "Red" }
 
-# https://stackoverflow.com/a/43633385
-function copyAbsolutePath { & (pwd).Path | Set-Clipboard }
-New-Alias -Name cppwd -Value copyAbsolutePath -Force -Option AllScope
-
 function Get-GitClone { & git clone $args }
 New-Alias -Name gclone -Value Get-GitClone -Force -Option AllScope
 
@@ -52,10 +48,10 @@ function Get-GitRemote { & git remote -v $args }
 New-Alias -Name gr -Value Get-GitRemote -Force -Option AllScope
 
 function Get-GitPush { & git push }
-New-Alias -Name gpp -Value Get-GitPush -Force -Option AllScope
+New-Alias -Name gpush -Value Get-GitPush -Force -Option AllScope
 
 function Get-GitPull { & git pull }
-New-Alias -Name gp -Value Get-GitPull -Force -Option AllScope
+New-Alias -Name gpp -Value Get-GitPull -Force -Option AllScope
 
 function Get-GitCheckout { & git checkout $args }
 New-Alias -Name gco -Value Get-GitCheckout -Force -Option AllScope
@@ -71,6 +67,6 @@ New-Alias -Name mvnci -Value Run-CleanInstall -Force -Option AllScope
 
 function Get-GitCommitWipPush {
     gwip
-    gpp
+    gpush
 }
 New-Alias -Name gsave -Value Get-GitCommitWipPush -Force -Option AllScope
