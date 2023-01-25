@@ -1,4 +1,3 @@
----
 # color and schedule
 
 > Reduce Eyestrain
