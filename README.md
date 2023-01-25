@@ -1,2 +1,2 @@
 # utils
-> piece of usefull codes
+> piece of usefull codes and notes
