@@ -21,4 +21,3 @@ W
 # Script
 
 [How to set an alias in Windows Command Line?](https://superuser.com/a/1674903)
-pushd "C:\Users\iuri.matos\vivere\back\pioneer\cacheable"
