@@ -1,0 +1,4 @@
+[
+	{ "keys": ["ctrl+w"], "command": "expand_selection", "args": {"to": "scope"} },	
+	{ "keys": ["alt+w"], "command": "close_file" },
+]
