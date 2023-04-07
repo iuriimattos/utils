@@ -20,6 +20,9 @@ function rmrf([string]$Path) {
     }
 }
 
+function lsaa() {
+    ls | sort LastWriteTime -Descending | Select -First 5
+}
 
 function lsa() {
     Get-ChildItem | Sort-Object LastAccessTime -Descending
@@ -138,7 +141,7 @@ function gsave() {
     git add .
     $msg=$args[0]
     if ([string]::IsNullOrEmpty($msg)) {
-        $msg = "wip"
+        $msg = "Work In Progress"
     }
     git commit -m "$msg"
     gpush
@@ -146,8 +149,9 @@ function gsave() {
 
 # GIT alias: for git commit wip
 function gwip() {
+    $msg = "Work In Progress"    
     git add .  
-    git commit -m wip
+    git commit -m "$msg" --no-verify
 }
 
 # GIT alias: for git commit -m
@@ -162,15 +166,16 @@ function gcom() {
 # Custom Posh-Git
 Import-Module posh-git
 function prompt {
+    Write-Host 
     $origLastExitCode = $LASTEXITCODE
     $parentFullPath = Split-Path -path (Get-Location)
     $parentFolderName = Split-Path -leaf -path $($parentFullPath)
     $currentFolderName = Split-Path -leaf -path (Get-Location)
     Write-Host "$($parentFolderName)\$($currentFolderName)"
     if ($status = Get-GitStatus -Force) {
-    $prompt += "$(Write-GitBranchStatus $status -NoLeadingSpace)$(Write-GitBranchName $status)"
+        $prompt += "$(Write-GitBranchStatus $status -NoLeadingSpace)$(Write-GitBranchName $status)"
     }
     $prompt += "$(if ($PsDebugContext) {' [DBG]:'} else {''})$('>' * ($nestedPromptLevel + 1)) "
     $LASTEXITCODE = $origLastExitCode
-    $prompt
+    Write-Host $prompt   
 }
