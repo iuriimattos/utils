@@ -21,7 +21,7 @@ function rmrf([string]$Path) {
 }
 
 function lsaa() {
-    ls | sort LastWriteTime -Descending | Select -First 5
+    ls | sort LastWriteTime -Descending | Select -First 10
 }
 
 function lsa() {
