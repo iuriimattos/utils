@@ -159,6 +159,16 @@ function gcom() {
     git commit -m $args[0]
 }
 
+# GIT setup: disable ssl
+function gssloff() {
+    git config --global http.sslVerify false
+}
+
+# GIT setup: enable ssl
+function gsslon() {
+    git config --global http.sslVerify true
+}
+
 # ===============================
 # = PROMPT
 # ===============================
