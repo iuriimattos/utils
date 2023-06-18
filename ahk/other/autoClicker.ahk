@@ -1,6 +1,6 @@
 #MaxThreadsPerHotkey 3
 
-XButton2::
+F1::
 Toggle := !Toggle
 Loop
 {

@@ -1,4 +1,4 @@
-Esc::ExitApp
+xEsc::ExitApp
 F1::
 Send, monitor
 return

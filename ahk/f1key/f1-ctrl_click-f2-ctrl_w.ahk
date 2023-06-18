@@ -1,7 +1,8 @@
+Pause::ExitApp
 #IfWinActive, ahk_exe chrome.exe
-F1::
-Send, {Ctrl Down}{Click}{Ctrl up}
+   F1::
+   Send, ^{Click}
 Return
 F2::
-Send ^w
+   Send ^w
 Return

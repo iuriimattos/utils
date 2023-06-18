@@ -20,20 +20,20 @@ RestoreCapslockState:
       SetCapsLockState % !GetKeyState("CapsLock", "T") ; Toggles CapsLock to its opposite state, requires [v1.1.30+]
 return
  
-CapsLock & A::MoveCursor("{LEFT}")
-CapsLock & S::MoveCursor("{DOWN}")
-CapsLock & W::MoveCursor("{UP}")
-CapsLock & D::MoveCursor("{RIGHT}")
-CapsLock & I::MoveCursor("{HOME}")
-CapsLock & K::MoveCursor("{END}")
-CapsLock & O::MoveCursor("{PGUP}")
-CapsLock & L::MoveCursor("{PGDN}")
-CapsLock & J::MoveCursor("{DEL}")
-CapsLock & U::MoveCursor("{INSERT}")
+CapsLock & A::MoveCaret("{LEFT}")
+CapsLock & S::MoveCaret("{DOWN}")
+CapsLock & W::MoveCaret("{UP}")
+CapsLock & D::MoveCaret("{RIGHT}")
+CapsLock & I::MoveCaret("{HOME}")
+CapsLock & K::MoveCaret("{END}")
+CapsLock & O::MoveCaret("{PGUP}")
+CapsLock & L::MoveCaret("{PGDN}")
+CapsLock & J::MoveCaret("{DEL}")
+CapsLock & U::MoveCaret("{INSERT}")
  
 ; credits
 ; https://stackoverflow.com/a/65189128
-MoveCursor(key) {
+MoveCaret(key) {
    control := GetKeyState("CONTROL","P")
    shift := GetKeyState("SHIFT","P")
    alt := GetKeyState("ALT","P")
