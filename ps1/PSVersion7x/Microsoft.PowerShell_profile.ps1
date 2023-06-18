@@ -21,7 +21,7 @@ function rmrf([string]$Path) {
 }
 
 function lsaa() {
-    ls | sort LastWriteTime -Descending | Select -First 10
+    ls | sort LastWriteTime -Descending | Select -First 5
 }
 
 function lsa() {
@@ -70,6 +70,13 @@ function gstash() {
 # GIT alias: stash pop
 function gstashpop() {
     git stash pop
+}
+
+;todo https://stackoverflow.com/a/58369263
+;credits ; https://stackoverflow.com/questions/10018533/is-it-possible-to-git-status-only-modified-files#comment84019862_41382850
+# GIT alias: show all modified added, copied, modified and renamed files
+function gss() {
+    git diff --cached --name-only --diff-filter=ACMR
 }
 
 # GIT alias: status
@@ -157,16 +164,6 @@ function gwip() {
 # GIT alias: for git commit -m
 function gcom() {
     git commit -m $args[0]
-}
-
-# GIT setup: disable ssl
-function gssloff() {
-    git config --global http.sslVerify false
-}
-
-# GIT setup: enable ssl
-function gsslon() {
-    git config --global http.sslVerify true
 }
 
 # ===============================
