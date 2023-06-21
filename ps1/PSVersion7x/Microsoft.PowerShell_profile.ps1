@@ -5,6 +5,11 @@
 # https://stackoverflow.com/a/52651577
 Set-PSReadLineOption -Colors @{Operator = "Red"; Parameter = "Red"; Command = "Red";String = "Red"}
 
+# https://superuser.com/a/1212364
+function cprobo([string]$Source, [string]$Destination) {
+    Robocopy.exe $Source $Destination /MIR
+}
+
 # https://stackoverflow.com/a/43633385
 function cppwd() {
     (pwd).Path | CLIP
