@@ -168,6 +168,7 @@ function gwip() {
 
 # GIT alias: for git commit -m
 function gcom() {
+    git add .
     git commit -m $args[0]
 }
 
