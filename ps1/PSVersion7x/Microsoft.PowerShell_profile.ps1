@@ -172,6 +172,16 @@ function gcom() {
     git commit -m $args[0]
 }
 
+# GIT alias: for git commit -m
+function gssloff() {
+    git config http.sslVerify "false"
+}
+
+# GIT alias: for git commit -m
+function gsslon() {
+    git config http.sslVerify "true"
+}
+
 # ===============================
 # = PROMPT
 # ===============================
