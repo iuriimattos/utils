@@ -1,3 +1,13 @@
-  ffmpeg -i .\20230616_155604.mp4 -vcodec libvpx-vp9 -b:v 1M -acodec libvorbis output_file_name.mp4
+[VP9 Encode Guide](https://gist.github.com/mrintrepide/3033c35ee9557e66cff7806f48dbd339)
+[Encoding Video](https://gist.github.com/Vestride/278e13915894821e1d6f)
 
-  ffmpeg -an -i 2023_08_02_18_15_14.mp4 -vcodec libx264 -pix_fmt yuv420p -profile:v baseline -level 3 output_file_name.mp4
+
+H.264 (x264) 100MB to 64MB
+```
+ffmpeg -i bruna_trajeto_libras.mp4 -c:v libx264 -crf 28 -c:a aac -b:a 128k halfsize.mp4
+```
+
+H.264 (x264) to half-size
+```
+ffmpeg -i 2023_08 -c:v libx264 -crf 23 -vf "scale=iw/2:ih/2" -c:a aac -b:a 128k output.mp4
+```
