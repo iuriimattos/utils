@@ -99,6 +99,12 @@ git push remote branch -f
 git rebase --abort
 ```
 
+> seguro força a atualização de uma branch do repositorio remoto
+
+```
+git fetch origin && git rebase remote/branch
+```
+
 > força a atualização de uma branch do repositorio remoto
 
 ```
