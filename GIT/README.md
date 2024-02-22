@@ -172,6 +172,12 @@ git log
 > o hash é uma sequencia de número e letras após a palavra commit
 
 ```
+git log --all --grep='Overwrite remote'
+```
+
+> filtra as modificações por mensagem de commit
+
+```
 git reset .
 ```
 
