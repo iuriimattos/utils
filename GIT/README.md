@@ -93,19 +93,20 @@ git push remote branch
 git push remote branch -f
 ```
 
-> aborta o rebase
+> força a atualização de uma branch do repositorio remoto
 
 ```
 git rebase --abort
 ```
 
-> seguro força a atualização de uma branch do repositorio remoto
+> aborta o rebase
 
 ```
 git fetch origin && git rebase remote/branch
 ```
 
-> força a atualização de uma branch do repositorio remoto
+> atualiza a branch atual a partir de um repositorio remoto (coloca os commits atuais no topo (HEAD))
+> ideal para trabalhar no mesmo arquivo
 
 ```
 git pull remote branch --rebase
