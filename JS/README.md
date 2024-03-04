@@ -1,3 +1,5 @@
+[Console Snippets](console.js)
+
 [How do I remove a particular element from an array in JavaScript?](https://stackoverflow.com/questions/5767325/how-do-i-remove-a-particular-element-from-an-array-in-javascript)
 
 [How to trigger Autofill in Google Chrome?](https://stackoverflow.com/questions/7223168/how-to-trigger-autofill-in-google-chrome)
