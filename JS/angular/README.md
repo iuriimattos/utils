@@ -12,7 +12,12 @@ ng build -w
 
 create a new component
 ```
-ng g c COMPONENTE_CAMELCASE
+ng g c CAMELCASE
+```
+
+create a new service
+```
+ng g s CAMELCASE
 ```
 
 tutorial:
