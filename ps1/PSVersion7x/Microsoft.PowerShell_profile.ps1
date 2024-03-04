@@ -125,6 +125,11 @@ function grs() {
     git reset --soft $args[0]
 }
 
+# GIT alias: rebase to arg branch
+function grebase() {
+    git fetch origin && git rebase origin/$args[0]
+}
+
 # GIT alias: pulling upstream branch
 function gpp() {
     git pull
