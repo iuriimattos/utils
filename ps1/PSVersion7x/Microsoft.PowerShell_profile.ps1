@@ -59,7 +59,7 @@ function mvnciu() {
 
 # GIT alias: clone
 function gclone() {
-    git clone $args[0]
+    git clone $args
 }
 
 # GIT alias: log
@@ -101,33 +101,33 @@ function gfo() {
 
 # GIT alias: checkout
 function gco() {
-    git checkout $args[0]
+    git checkout $args
 }
 
 # GIT alias: checkout and delete branch
 function gcob() {
-    git branch -D $args[0]
-    git checkout -b $args[0]
+    git branch -D $args
+    git checkout -b $args
 }
 
 # GIT alias: reset
 function greset() {
-    git reset $args[0]
+    git reset $args
 }
 
 # GIT alias: reset --hard
 function grh() {
-    git reset --hard $args[0]
+    git reset --hard $args
 }
 
 # GIT alias: reset --soft
 function grs() {
-    git reset --soft $args[0]
+    git reset --soft $args
 }
 
 # GIT alias: rebase to arg branch
 function grebase() {
-    git fetch origin && git rebase origin/$args[0]
+    git fetch origin && git rebase origin/$args
 }
 
 # GIT alias: pulling upstream branch
@@ -137,7 +137,7 @@ function gpp() {
 
 # GIT alias: pulling origin choose branch
 function gppo() {
-    git pull origin $args[0]
+    git pull origin $args
 }
 
 # GIT alias: publish local branch to remote
@@ -156,7 +156,7 @@ function gup() {
 # GIT alias: quick command to help your code and push to remote
 function gsave() {
     git add .
-    $msg=$args[0]
+    $msg=$args
     if ([string]::IsNullOrEmpty($msg)) {
         $msg = "Work In Progress"
     }
@@ -174,7 +174,7 @@ function gwip() {
 # GIT alias: for git commit -m
 function gcom() {
     git add .
-    git commit -m $args[0]
+    git commit -m $args
 }
 
 # ===============================
