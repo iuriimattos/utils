@@ -17,7 +17,7 @@ Google Chrome Canary args
 [Set up an SSH key](https://confluence.atlassian.com/bitbucket/set-up-an-ssh-key-728138079.html)
 commands detail:
 ```
-eval `ssh-agent -s`
+eval "$(ssh-agent -s)"
 ````
 
 [Encoding Video](https://gist.github.com/Vestride/278e13915894821e1d6f)
