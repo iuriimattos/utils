@@ -79,13 +79,18 @@ function gstashpop() {
 
 # todo https://stackoverflow.com/a/58369263
 # credits ; https://stackoverflow.com/questions/10018533/is-it-possible-to-git-status-only-modified-files#comment84019862_41382850
-# GIT alias: show all modified added, copied, modified and renamed files
-function gss() {
+# GIT alias: show all modified added, copied, modified and renamed files names
+function gdc() {
     git diff --cached --name-only --diff-filter=ACMR
 }
 
+# GIT alias: show modified lines of not staged
+function gdu() {
+    git diff --unified=0
+}
+
 # GIT alias: search words inside commits message
-function glf() {
+function glg() {
     git log --all --grep='$args'
 }
 
