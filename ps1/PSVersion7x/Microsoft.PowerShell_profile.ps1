@@ -84,6 +84,11 @@ function gss() {
     git diff --cached --name-only --diff-filter=ACMR
 }
 
+# GIT alias: search words inside commits message
+function glf() {
+    git log --all --grep='$args'
+}
+
 # GIT alias: status
 function gs() {
     git status
