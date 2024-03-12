@@ -1,0 +1,23 @@
+// Documentation at https://www.sublimetext.com/docs/color_schemes.html
+{
+	"variables":
+	{
+	},
+	"globals":
+	{
+		"accent": "magenta",
+		"background": "#CCCCFF"
+	},
+	"rules":
+    [    	
+        {
+            "class": "tab_control",
+            "attributes": ["dirty", "!added", "!deleted"],
+            "settings": {
+                "file_tab_style": ["", "rounded", "square"],
+                "highlight_modified_tabs": true
+            },
+            "layer2.tint": "magenta"
+        }
+    ]
+}
