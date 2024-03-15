@@ -1,0 +1,20 @@
+{
+    "workbench.colorTheme": "Default Light Modern",
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#CCCCFF",
+        "activityBar.foreground": "red",
+        "titleBar.activeBackground": "#CCCCFF",
+        "list.inactiveSelectionBackground": "#CCCCFF",
+        "sideBar.background": "#CCCCFF",
+        "editor.background": "#CCCCFF",
+        "sideBarSectionHeader.background": "#CCCCFF",
+        "statusBar.background": "#CCCCFF",
+        "scrollbarSlider.activeBackground": "#CCCCFF",
+        "scrollbarSlider.hoverBackground": "#CCCCFF",
+        "badge.background": "#CCCCFF",
+        "titleBar.inactiveBackground": "#CCCCFF",
+        "statusBar.debuggingBackground": "#CCCCFF",
+        "statusBar.noFolderBackground": "#CCCCFF",
+        "statussBar.prominentBackground": "#CCCCFF",
+    }    
+}
