@@ -15,18 +15,45 @@ function cppwd() {
     (pwd).Path | CLIP
 }
 
-# https://stackoverflow.com/a/69565104
+## https://stackoverflow.com/a/69565104
+#function rmrf([string]$Path) {
+#    try {
+#        Remove-Item -Recurse -Force -ErrorAction:Stop $Path
+#    } catch [System.Management.Automation.ItemNotFoundException] {
+#        # Ignore
+#        $Error.Clear()
+#    }
+#}
 function rmrf([string]$Path) {
     try {
-        Remove-Item -Recurse -ErrorAction:Stop $Path
+        Remove-Item -Recurse -Force -ErrorAction:Stop $Path
+    } catch [System.UnauthorizedAccessException] {
+        # Attempt to take ownership and set the necessary permissions
+        Take-OwnershipAndSetAcl $Path
+        Remove-Item -Recurse -Force -ErrorAction:Stop $Path
     } catch [System.Management.Automation.ItemNotFoundException] {
-        # Ignore
+        # Ignore if the item does not exist
         $Error.Clear()
+    } catch {
+        # Handle any other exceptions
+        Write-Error "An error occurred: $_"
     }
 }
 
+function Take-OwnershipAndSetAcl([string]$Path) {
+    # Take ownership of the item
+    takeown /f $Path /r /d y
+
+    # Set full control permission for the current user
+    $acl = Get-Acl -Path $Path
+    $user = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
+    $accessRule = New-Object System.Security.AccessControl.FileSystemAccessRule($user, "FullControl", "Allow")
+    $acl.SetAccessRule($accessRule)
+    Set-Acl -Path $Path -AclObject $acl
+}
+
 function lsaa() {
-    ls | sort LastWriteTime -Descending | Select -First 5
+    ls | sort LastWriteTime -Descending | Select -First 50
 }
 
 function lsa() {
@@ -84,14 +111,14 @@ function gdc() {
     git diff --cached --name-only --diff-filter=ACMR
 }
 
-# GIT alias: show modified lines of not staged
+# GIT alias: show modified lines not in staged
 function gdu() {
     git diff --unified=0
 }
 
 # GIT alias: search words inside commits message
 function glg() {
-    git log --all --grep='$args'
+    git log --all --grep=$args
 }
 
 # GIT alias: status
