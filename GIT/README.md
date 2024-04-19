@@ -236,3 +236,27 @@ git merge [branch] -x theirs
 ```
 
 > Merges the current branch with [branch], which can be origin/yourbranchname.
+
+```bash
+‐‐diff-algorithm={myers|default}
+```
+
+> Myers: The original algorithm as implemented in [xdiff-lib.html](http://www.xmailserver.org/xdiff-lib.html) and [diff2.pdf](http://www.xmailserver.org/diff2.pdf), optimizing the 'edit distance' for changed lines.
+
+```bash
+‐‐diff-algorithm=minimal
+```
+
+> Minimal: Myers plus trying to minimize the patch size. It takes more time to process, as it seeks the optimal solution of smaller difference, useful for turf files.
+
+```bash
+‐‐diff-algorithm=patience
+```
+
+> Patience: Attempts to trade readability of the patch versus patch size and processing time. See What is `git diff --patience` for? and [bramcohen livejournal](http://bramcohen.livejournal.com/73318.html) or [alfedenzo livejournal](http://alfedenzo.livejournal.com/170301.html) for a description.
+
+```bash
+‐‐diff-algorithm=histogram
+```
+
+> Histogram: Mainly created for speed. Faster than Myers and Patience, originally developed in [jgit](http://eclipse.org/jgit/)
