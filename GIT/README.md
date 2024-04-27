@@ -231,8 +231,10 @@ git cherry-pick --no-commit <commit_hash>, <commit_hash>
 ```bash
 git merge [branch] --strategy-option ours
 git merge [branch] -x ours
+git merge -Xours [remote]/[branch]
 git merge [branch] --strategy-option theirs
 git merge [branch] -x theirs
+git merge -Xtheirs [remote]/[branch]
 ```
 
 > Merges the current branch with [branch], which can be origin/yourbranchname.
