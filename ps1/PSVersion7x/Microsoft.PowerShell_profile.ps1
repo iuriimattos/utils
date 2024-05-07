@@ -2,13 +2,18 @@
 # = START
 # ===============================
 
+# https://stackoverflow.com/a/52651577
+Set-PSReadLineOption -Colors @{Operator = "Red"; Parameter = "Red"; Command = "Red";String = "Red"}
+
+#cmd /c mklink C:\Users\user\queries.sql C:\Users\user\AppData\Roaming\DBeaverData\workspace6\General\Scripts\Queries.sql
+function zmklink() {    
+    cmd /c mklink $args[0] $args[1]
+}
+
 function zrefreshenv() {
     Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
     refreshenv
 }
-
-# https://stackoverflow.com/a/52651577
-Set-PSReadLineOption -Colors @{Operator = "Red"; Parameter = "Red"; Command = "Red";String = "Red"}
 
 # https://superuser.com/a/1212364
 function cprobo([string]$Source, [string]$Destination) {
