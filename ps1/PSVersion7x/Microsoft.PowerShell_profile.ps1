@@ -2,12 +2,23 @@
 # = START
 # ===============================
 
+function zrefreshenv() {
+    Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
+    refreshenv
+}
+
 # https://stackoverflow.com/a/52651577
 Set-PSReadLineOption -Colors @{Operator = "Red"; Parameter = "Red"; Command = "Red";String = "Red"}
 
 # https://superuser.com/a/1212364
 function cprobo([string]$Source, [string]$Destination) {
     Robocopy.exe $Source $Destination /MIR
+}
+
+
+# https://stackoverflow.com/a/70596319/23516810
+function tailf() {
+    Get-ChildItem $args | Foreach-Object -Parallel { Get-Content $_ -Tail 1 -Wait }
 }
 
 # https://stackoverflow.com/a/43633385
@@ -80,6 +91,11 @@ function mvnciu() {
     mvn clean install -DskipTests -U
 }
 
+# Maven: Spring Boot RUN
+function mvnrun() {
+    mvn spring-boot:run
+}
+
 # ===============================
 # = GIT
 # ===============================
@@ -138,7 +154,7 @@ function gfo() {
 
 # GIT alias: checkout
 function gco() {
-    git checkout $args
+    git fetch --all && git checkout $args
 }
 
 # GIT alias: checkout and delete branch
@@ -213,6 +229,11 @@ function gcom() {
     git add .
     git commit -m $args
 }
+
+# ===============================
+# = EXPERIMENTAL
+# ===============================
+
 
 # ===============================
 # = PROMPT
