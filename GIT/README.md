@@ -262,3 +262,13 @@ git merge -Xtheirs [remote]/[branch]
 ```
 
 > Histogram: Mainly created for speed. Faster than Myers and Patience, originally developed in [jgit](http://eclipse.org/jgit/)
+
+$ git diff HEAD differences between the latest commit and the working tree;
+
+$ git diff HEAD HEAD~1 = $ git show differences between the latest commit and the commit before the latest.
+
+(By the way,
+
+$ git diff differences between the working tree and the index;
+
+$ git diff --cached differences between the latest commit and the index.)
