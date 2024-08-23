@@ -1,6 +1,9 @@
 // youtube fastest
 $('video').playbackRate=16
 
+//delete all elements start with text
+document.querySelectorAll('yt-formatted-string').forEach(el => el.textContent.startsWith('My Hero Academia') && el.remove());
+
 //show all elements width greater than window width
 const query1=document.querySelectorAll('*').forEach(el => el.offsetWidth > window.innerWidth && console.log(el));
 
