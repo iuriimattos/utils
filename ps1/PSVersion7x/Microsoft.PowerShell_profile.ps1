@@ -5,6 +5,10 @@
 # https://stackoverflow.com/a/52651577
 Set-PSReadLineOption -Colors @{Operator = "Red"; Parameter = "Red"; Command = "Red";String = "Red"}
 
+function znewtab() {
+    wt -w 0 -d $args[0]
+}
+
 #cmd /c mklink C:\Users\user\queries.sql C:\Users\user\AppData\Roaming\DBeaverData\workspace6\General\Scripts\Queries.sql
 function zmklink() {    
     cmd /c mklink $args[0] $args[1]
@@ -19,7 +23,6 @@ function zrefreshenv() {
 function cprobo([string]$Source, [string]$Destination) {
     Robocopy.exe $Source $Destination /MIR
 }
-
 
 # https://stackoverflow.com/a/70596319/23516810
 function tailf() {
@@ -80,6 +83,16 @@ function lsa() {
 # = MAVEN
 # ===============================
 
+# Maven: dependency:tree
+function mvnm2() {
+    mvn dependency:tree
+}
+
+# Maven: test class
+function mvnt() {
+    Write-Host 
+    mvn -o test -Dtest=$args
+}
 
 # Maven: package
 function mvncp() {
@@ -88,7 +101,7 @@ function mvncp() {
 
 # Maven: install
 function mvnci() {
-    mvn clean install -DskipTests
+    mvn -o clean install -DskipTests
 }
 
 # Maven: update snapshots
@@ -100,10 +113,31 @@ function mvnciu() {
 function mvnrun() {
     mvn spring-boot:run
 }
+# ===============================
+# = DOCKER AND WSL
+# ===============================
+
+function ddbuild() {
+    docker build -t $args .
+}
+
+function ddrun() {
+    docker run -d -p 5000:5000 $args
+}
+
+# https://stackoverflow.com/a/75302399
+function ddoff() {
+    wsl --unregister docker-desktop
+}
 
 # ===============================
 # = GIT
 # ===============================
+
+# GIT alias cherry-pick --skip
+function gck() {
+    git cherry-pick --skip
+}
 
 # GIT alias: clone
 function gclone() {
@@ -159,38 +193,58 @@ function gfo() {
 
 # GIT alias: checkout
 function gco() {
-    git fetch --all && git checkout $args
+    git checkout $args && gpp
 }
 
-# GIT alias: checkout and delete branch
+# GIT alias: checkout
 function gcob() {
+    git checkout -b $args
+}
+
+# GIT alias: delete and checkout branch
+function gcodb() {
     git branch -D $args
     git checkout -b $args
 }
 
 # GIT alias: reset
 function greset() {
-    git reset $args
+    git fetch --all && git reset $args
+}
+
+# GIT alias: reset --hard origin/master
+function grhmaster() {
+    git fetch --all && git reset --hard origin/master
 }
 
 # GIT alias: reset --hard
 function grh() {
-    git reset --hard $args
+    git fetch --all && git reset --hard $args
 }
 
 # GIT alias: reset --soft
 function grs() {
-    git reset --soft $args
+    git fetch --all && git reset --soft $args
 }
 
 # GIT alias: rebase to arg branch
 function grebase() {
-    git fetch origin && git rebase origin/$args
+    git fetch --all && git rebase origin/$args
+}
+
+# GIT alias: merge ours
+function gmergeours() {
+    git fetch --all && git merge -Xours origin/$args
 }
 
 # GIT alias: pulling upstream branch
 function gpp() {
     git pull
+}
+
+# To perform a `git pull` with a specific merge strategy, such as `-Xtheirs`, you can use the `git pull` command with the `--strategy` and `--strategy-option` flags. Here's how you can do it:
+function pull-rebase-theirs() {
+  git pull --rebase --strategy=recursive --strategy-option=theirs origin develop  
 }
 
 # GIT alias: pulling origin choose branch
@@ -209,6 +263,12 @@ function gup() {
     git checkout "$1"
     git pull
     git checkout "$c"
+}
+
+# GIT alias: quick command to help your code and push to remote
+function gadd() {
+    git add $args
+    gs
 }
 
 # GIT alias: quick command to help your code and push to remote
@@ -231,13 +291,17 @@ function gwip() {
 
 # GIT alias: for git commit -m
 function gcom() {
-    git add .
+    git status
     git commit -m $args
 }
 
 # ===============================
-# = EXPERIMENTAL
+# = PYTHON
 # ===============================
+
+function ppshow() {
+    python -m pip show $args    
+}
 
 
 # ===============================
