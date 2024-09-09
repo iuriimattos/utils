@@ -18,6 +18,15 @@ const query2=document.querySelectorAll(".is-group");for(i=0;i<query2.length;i++)
 // https://github.com/trending?since=daily
 // order by number of stars
 let divElements = document.querySelectorAll('a[href$="stargazers"]');
+
+//if need retrieves previous sibling element
+divElements.forEach(divElement => {
+  const bElement = divElement.previousElementSibling; // Get the previous sibling element
+  if (bElement.tagName === 'B') {
+    console.log(bElement.innerHTML); // Access the innerHTML of the <b> element
+  }
+});
+
 const divArray = Array.from(divElements);
 divArray.forEach(div => {
   const text = div.textContent;
