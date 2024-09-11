@@ -41,3 +41,23 @@ divArray.forEach(element => {
 // https://taskernet.com/?public&tags=&time=Year
 // preview all projects
 const query1=document.querySelectorAll(".option.previewInline");for(i=0;i<query1.length;i++)console.log(query1[i].click());
+
+// https://www.gsuplementos.com.br/whey-protein/
+// order by number of stars
+let divElements = document.querySelectorAll('span.default');
+const divArray = Array.from(divElements);
+divArray.forEach(div => {
+  const text = div.textContent;
+  const match = text.match(/\d+/);
+  const number = match ? parseInt(match[0]) : 0; // Handle case where no number is found
+  div.textContent = number;
+});
+divArray.sort((a, b) => {
+  const numberA = parseFloat(a.textContent);
+  const numberB = parseFloat(b.textContent);
+  return numberA - numberB;
+});
+divArray.forEach(element => {
+  const extractedNumber = parseInt(element.textContent.match(/\d+/)[0]);
+  console.log(extractedNumber);
+});
