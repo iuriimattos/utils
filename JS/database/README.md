@@ -1,6 +1,6 @@
 # IA Resumed Of Local First Database Comparison
 
-crédits: [pubkey/client-side-databases](https://github.com/pubkey/client-side-databases)
+credits: [pubkey/client-side-databases](https://github.com/pubkey/client-side-databases)
 
 ## Comparsion:
 
