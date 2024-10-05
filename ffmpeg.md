@@ -12,3 +12,8 @@ H.264 (x264) to half-size
 ```
 ffmpeg -i 2023_08 -c:v libx264 -crf 23 -vf "scale=iw/2:ih/2" -c:a aac -b:a 128k output.mp4
 ```
+
+transcode OGG to 320kbps MP3
+```
+ffmpeg -i "singing1.ogg" -vn -c:a libmp3lame -b:a 320k "song1.mp3"
+```
