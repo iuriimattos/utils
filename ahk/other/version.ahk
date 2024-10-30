@@ -1,1 +1,0 @@
-Msgbox % "v" A_AhkVersion " " (A_PtrSize = 4 ? 32 : 64) "-bit " (A_IsUnicode ? "Unicode" : "ANSI")

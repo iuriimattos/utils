@@ -1,6 +1,9 @@
 // youtube fastest
 $('video').playbackRate=16
 
+//delete all elements start with text
+document.querySelectorAll('yt-formatted-string').forEach(el => el.textContent.startsWith('My Hero Academia') && el.remove());
+
 //show all elements width greater than window width
 const query1=document.querySelectorAll('*').forEach(el => el.offsetWidth > window.innerWidth && console.log(el));
 
@@ -27,7 +30,34 @@ divArray.sort((a, b) => {
   return numberA - numberB;
 });
 divArray.forEach(element => console.log(Number(element.innerText)));
+//if need retrieves previous sibling element
+divArray.forEach(element => {
+  const bElement = element.previousElementSibling; // Get the previous sibling element
+  if (bElement.tagName === 'B') {
+    console.log(bElement.innerHTML); // Access the innerHTML of the <b> element
+  }
+});
 
 // https://taskernet.com/?public&tags=&time=Year
 // preview all projects
 const query1=document.querySelectorAll(".option.previewInline");for(i=0;i<query1.length;i++)console.log(query1[i].click());
+
+// https://www.gsuplementos.com.br/whey-protein/
+// order by number of stars
+let divElements = document.querySelectorAll('span.default');
+const divArray = Array.from(divElements);
+divArray.forEach(div => {
+  const text = div.textContent;
+  const match = text.match(/\d+/);
+  const number = match ? parseInt(match[0]) : 0; // Handle case where no number is found
+  div.textContent = number;
+});
+divArray.sort((a, b) => {
+  const numberA = parseFloat(a.textContent);
+  const numberB = parseFloat(b.textContent);
+  return numberA - numberB;
+});
+divArray.forEach(element => {
+  const extractedNumber = parseInt(element.textContent.match(/\d+/)[0]);
+  console.log(extractedNumber);
+});

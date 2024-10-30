@@ -1,229 +1,274 @@
-[Git Extensions is a standalone UI tool for managing git repositories. It also integrates with Windows Explorer and Microsoft Visual Studio (2015/2017/2019).](https://github.com/gitextensions/gitextensions)
-```
+[Git Extensions is a standalone UI tool for managing git repositories. It also integrates with Windows Explorer and Microsoft Visual Studio (2015/2017/2019)](https://github.com/gitextensions/gitextensions)
+
+```bash
 branch
 ```
 
-> versão do código, geralmente usada quando o software esta em desenvolvimento. Utiliza-se branch principalmente quando há várias pessoas trabalhando em um mesmo projeto. Geralmente é utilizada para referenciar alguma alteração no código principal como um BUGFIX, HOTFIX, FEATURE ou RELEASE
+> Version of the code, usually used when the software is in development. Branches are primarily used when multiple people are working on the same project. It is generally used to reference some change in the main code such as a BUGFIX, HOTFIX, FEATURE, or RELEASE.
 
-```
+```bash
 HEAD
 ```
 
-> indica o ultimo commit.
+> Indicates the last commit.
 
-```
+```bash
 git init
 ```
 
-> inicia projeto git
+> Initializes a git project.
 
-```
+```bash
 git add .
 ```
 
-> prepara as modificações (staged) para versionar
+> Prepares modifications (staged) for versioning.
 
-```
+```bash
 git remote show remote
 ```
 
-> mostra todas as informações de um repositorio remoto
+> Shows all the information of a remote repository.
 
-```
+```bash
 git remote -v
 ```
 
-> mostra quantos repositorios remoto estão configurados
+> Displays how many remote repositories are configured.
 
-```
+```bash
 git status
 ```
 
-> exibe a situação atual da branch
+> Displays the current state of the branch.
 
-```
-git checkout (arquivo)
+```bash
+git checkout (file)
 ```
 
-> reverte o arquivo ao estado original
+> Reverts the file to its original state.
 
-```
+```bash
 git checkout (branch)
 ```
 
-> envia as mudanças atuais para uma branch
+> Sends the current changes to a branch.
 
-```
+```bash
 git checkout -b (branch)
 ```
 
-> cria uma branch com as modificações atuais
+> Creates a branch with the current modifications.
 
-```
-git checkout -b remoto/branch branchName
-```
-
-> cria nova branch a partir de um repositório remoto
-
-```
-git commit -m "texto do comit"
+```bash
+git checkout -b remote/branch branchName
 ```
 
-> cria uma nova versão
+> Creates a new branch from a remote repository.
 
+```bash
+git commit -m "commit message"
 ```
+
+> Creates a new version.
+
+```bash
 git push
 ```
 
-> atualiza a branch atual ou uma preconfigurada do repositorio remoto
+> Updates the current branch or a pre-configured one from the remote repository.
 
-```
+```bash
 git push --set-upstream <remote> <branch>
 ```
 
-> preconfigura a branch atual para uma branch do repositorio remoto
+> Pre-configures the current branch for a branch from the remote repository.
 
-```
+```bash
 git push remote branch
 ```
 
-> atualiza uma branch específica do repositorio remoto
+> Updates a specific branch of the remote repository.
 
-```
+```bash
 git push remote branch -f
 ```
 
-> força a atualização de uma branch do repositorio remoto
+> Forces the update of a branch from the remote repository.
 
-```
+```bash
 git rebase --abort
 ```
 
-> aborta o rebase
+> Aborts the rebase.
 
-```
+```bash
 git fetch origin && git rebase remote/branch
 ```
 
-> atualiza a branch atual a partir de um repositorio remoto (coloca os commits atuais no topo (HEAD))
-> ideal para trabalhar no mesmo arquivo
+> Updates the current branch from a remote repository (places the current commits on top (HEAD)).
+> Ideal for working on the same file.
 
-```
+```bash
 git pull remote branch --rebase
 ```
 
-> atualiza a branch atual a partir de um repositorio remoto (coloca os commits atuais no topo (HEAD))
-> ideal para trabalhar no mesmo arquivo
+> Updates the current branch from a remote repository (places the current commits on top (HEAD)).
+> Ideal for working on the same file.
 
-```
+```bash
 git pull rebase --continue
 ```
 
-> continua o pull --rebase a partir dos conflitos resolvidos
+> Continues the pull --rebase after resolving conflicts.
 
-```
+```bash
 git remote add origin (url)
 ```
 
-> adiciona um repositório remoto ao repositorio local
+> Adds a remote repository to the local repository.
 
-```
+```bash
 git clone (url)
 ```
 
-> clona projeto
+> Clones a project.
 
+```bash
+ignoring all files in a folder
 ```
-ignorando todos os arquivos de uma pasta
-```
 
->
-
+> 
         *
         */
         !.gitignore
 
-```
-git checkout (arquivo)
+```bash
+git checkout (file)
 ```
 
-> retira as mudanças não commitas de um arquivo
+> Removes uncommitted changes from a file.
 
-```
+```bash
 git fetch -p
 ```
 
-> remove as branchs deletadas no remoto
+> Removes deleted branches on remote.
 
-```
+```bash
 git fetch --all
 ```
 
-```
+```bash
 git fetch -a
 ```
 
-> busca as alterações de todas as branchs remotas
+> Fetches changes from all remote branches.
 
-```
+```bash
 git log
 ```
 
-> exibe as modificações da branch atual com seus devidos hash
-> o hash é uma sequencia de número e letras após a palavra commit
+> Displays the modifications of the current branch with their respective hashes.
+> The hash is a sequence of numbers and letters following the word commit.
 
-```
+```bash
 git log --all --grep='Overwrite remote'
 ```
 
-> filtra as modificações por mensagem de commit
+> Filters modifications by commit message.
 
-```
+```bash
 git reset .
 ```
 
-> retira todas as modificações que seriam commitadas (ustage)
-> usado para reverter o git add (diferente de git checkout .)
+> Removes all modifications that would be committed (unstage).
+> Used to revert the git add (different from git checkout .).
 
-```
+```bash
 git reset --soft <commit_hash>
 ```
 
-> reset da a branch atual para um commit específico 
-> **e coloca as modificações do HEAD até o <commit_hash> em sua arvore de trabalho para um commit**
-> as modificações ficam staged (git add provoca o staged)
+> Resets the current branch to a specific commit
+> **and places the modifications from HEAD up to <commit_hash> in your working tree for a commit**
+> Modifications remain staged (git add causes staging).
 
+```bash
+git reset --soft HEAD~<number>
 ```
-git reset --soft HEAD~<numero>
-```
 
-> reset <numero> commits da branch atual 
-> **e coloca as modificações do HEAD até o <numero> em sua arvore de trabalho para um commit**
+> Resets <number> commits from the current branch
+> **and places the modifications from HEAD up to <number> in your working tree for a commit**.
 
 
-```
+```bash
 git reset --hard commit
 ```
 
-```
-git reset --hard HEAD~<numero>
+```bash
+git reset --hard HEAD~<number>
 ```
 
-```
+```bash
 git reset --hard remote/branch
 ```
 
-> reset da a branch atual para um commit específico **NÃO mantendo alterações não commitadas**
+> Resets the current branch to a specific commit **NOT keeping uncommitted changes**.
 
-```
-git cherry-pick --no-commit <commit_hash>, <commit_hash>
-```
-
-> pega  commits e atualiza a working tree, deixando essas alterações em staged
-
-```
+```bash
 git rm --cached -r <path-to-file>
 git rm --cached -r <path>
 ```
 
-> deleta todas as versões de um determinado aquivo ou pasta
+> Deletes all versions of a particular file or folder.
+
+```bash
+git cherry-pick --no-commit <commit_hash>, <commit_hash>
+```
+
+> Picks commits and updates the working tree, leaving these changes in staged.
+
+```bash
+git merge [branch] --strategy-option ours
+git merge [branch] -x ours
+git merge -Xours [remote]/[branch]
+git merge [branch] --strategy-option theirs
+git merge [branch] -x theirs
+git merge -Xtheirs [remote]/[branch]
+```
+
+> Merges the current branch with [branch], which can be origin/yourbranchname.
+
+```bash
+‐‐diff-algorithm={myers|default}
+```
+
+> Myers: The original algorithm as implemented in [xdiff-lib.html](http://www.xmailserver.org/xdiff-lib.html) and [diff2.pdf](http://www.xmailserver.org/diff2.pdf), optimizing the 'edit distance' for changed lines.
+
+```bash
+‐‐diff-algorithm=minimal
+```
+
+> Minimal: Myers plus trying to minimize the patch size. It takes more time to process, as it seeks the optimal solution of smaller difference, useful for turf files.
+
+```bash
+‐‐diff-algorithm=patience
+```
+
+> Patience: Attempts to trade readability of the patch versus patch size and processing time. See What is `git diff --patience` for? and [bramcohen livejournal](http://bramcohen.livejournal.com/73318.html) or [alfedenzo livejournal](http://alfedenzo.livejournal.com/170301.html) for a description.
+
+```bash
+‐‐diff-algorithm=histogram
+```
+
+> Histogram: Mainly created for speed. Faster than Myers and Patience, originally developed in [jgit](http://eclipse.org/jgit/)
+
+$ git diff HEAD differences between the latest commit and the working tree;
+
+$ git diff HEAD HEAD~1 = $ git show differences between the latest commit and the commit before the latest.
+
+(By the way,
+
+$ git diff differences between the working tree and the index;
+
+$ git diff --cached differences between the latest commit and the index.)

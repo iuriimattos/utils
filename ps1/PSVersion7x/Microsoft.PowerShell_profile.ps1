@@ -5,9 +5,28 @@
 # https://stackoverflow.com/a/52651577
 Set-PSReadLineOption -Colors @{Operator = "Red"; Parameter = "Red"; Command = "Red";String = "Red"}
 
+function znewtab() {
+    wt -w 0 -d $args[0]
+}
+
+#cmd /c mklink C:\Users\user\queries.sql C:\Users\user\AppData\Roaming\DBeaverData\workspace6\General\Scripts\Queries.sql
+function zmklink() {    
+    cmd /c mklink $args[0] $args[1]
+}
+
+function zrefreshenv() {
+    Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
+    refreshenv
+}
+
 # https://superuser.com/a/1212364
 function cprobo([string]$Source, [string]$Destination) {
     Robocopy.exe $Source $Destination /MIR
+}
+
+# https://stackoverflow.com/a/70596319/23516810
+function tailf() {
+    Get-ChildItem $args | Foreach-Object -Parallel { Get-Content $_ -Tail 1 -Wait }
 }
 
 # https://stackoverflow.com/a/43633385
@@ -15,18 +34,45 @@ function cppwd() {
     (pwd).Path | CLIP
 }
 
-# https://stackoverflow.com/a/69565104
+## https://stackoverflow.com/a/69565104
+#function rmrf([string]$Path) {
+#    try {
+#        Remove-Item -Recurse -Force -ErrorAction:Stop $Path
+#    } catch [System.Management.Automation.ItemNotFoundException] {
+#        # Ignore
+#        $Error.Clear()
+#    }
+#}
 function rmrf([string]$Path) {
     try {
-        Remove-Item -Recurse -ErrorAction:Stop $Path
+        Remove-Item -Recurse -Force -ErrorAction:Stop $Path
+    } catch [System.UnauthorizedAccessException] {
+        # Attempt to take ownership and set the necessary permissions
+        Take-OwnershipAndSetAcl $Path
+        Remove-Item -Recurse -Force -ErrorAction:Stop $Path
     } catch [System.Management.Automation.ItemNotFoundException] {
-        # Ignore
+        # Ignore if the item does not exist
         $Error.Clear()
+    } catch {
+        # Handle any other exceptions
+        Write-Error "An error occurred: $_"
     }
 }
 
+function Take-OwnershipAndSetAcl([string]$Path) {
+    # Take ownership of the item
+    takeown /f $Path /r /d y
+
+    # Set full control permission for the current user
+    $acl = Get-Acl -Path $Path
+    $user = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
+    $accessRule = New-Object System.Security.AccessControl.FileSystemAccessRule($user, "FullControl", "Allow")
+    $acl.SetAccessRule($accessRule)
+    Set-Acl -Path $Path -AclObject $acl
+}
+
 function lsaa() {
-    ls | sort LastWriteTime -Descending | Select -First 5
+    ls | sort LastWriteTime -Descending | Select -First 50
 }
 
 function lsa() {
@@ -37,6 +83,16 @@ function lsa() {
 # = MAVEN
 # ===============================
 
+# Maven: dependency:tree
+function mvnm2() {
+    mvn dependency:tree
+}
+
+# Maven: test class
+function mvnt() {
+    Write-Host 
+    mvn -o test -Dtest=$args
+}
 
 # Maven: package
 function mvncp() {
@@ -45,7 +101,7 @@ function mvncp() {
 
 # Maven: install
 function mvnci() {
-    mvn clean install -DskipTests
+    mvn -o clean install -DskipTests
 }
 
 # Maven: update snapshots
@@ -53,9 +109,35 @@ function mvnciu() {
     mvn clean install -DskipTests -U
 }
 
+# Maven: Spring Boot RUN
+function mvnrun() {
+    mvn spring-boot:run
+}
+# ===============================
+# = DOCKER AND WSL
+# ===============================
+
+function ddbuild() {
+    docker build -t $args .
+}
+
+function ddrun() {
+    docker run -d -p 5000:5000 $args
+}
+
+# https://stackoverflow.com/a/75302399
+function ddoff() {
+    wsl --unregister docker-desktop
+}
+
 # ===============================
 # = GIT
 # ===============================
+
+# GIT alias cherry-pick --skip
+function gck() {
+    git cherry-pick --skip
+}
 
 # GIT alias: clone
 function gclone() {
@@ -84,14 +166,14 @@ function gdc() {
     git diff --cached --name-only --diff-filter=ACMR
 }
 
-# GIT alias: show modified lines of not staged
+# GIT alias: show modified lines not in staged
 function gdu() {
     git diff --unified=0
 }
 
 # GIT alias: search words inside commits message
 function glg() {
-    git log --all --grep='$args'
+    git log --all --grep=$args
 }
 
 # GIT alias: status
@@ -111,38 +193,58 @@ function gfo() {
 
 # GIT alias: checkout
 function gco() {
-    git checkout $args
+    git checkout $args && gpp
 }
 
-# GIT alias: checkout and delete branch
+# GIT alias: checkout
 function gcob() {
+    git checkout -b $args
+}
+
+# GIT alias: delete and checkout branch
+function gcodb() {
     git branch -D $args
     git checkout -b $args
 }
 
 # GIT alias: reset
 function greset() {
-    git reset $args
+    git fetch --all && git reset $args
+}
+
+# GIT alias: reset --hard origin/master
+function grhmaster() {
+    git fetch --all && git reset --hard origin/master
 }
 
 # GIT alias: reset --hard
 function grh() {
-    git reset --hard $args
+    git fetch --all && git reset --hard $args
 }
 
 # GIT alias: reset --soft
 function grs() {
-    git reset --soft $args
+    git fetch --all && git reset --soft $args
 }
 
 # GIT alias: rebase to arg branch
 function grebase() {
-    git fetch origin && git rebase origin/$args
+    git fetch --all && git rebase origin/$args
+}
+
+# GIT alias: merge ours
+function gmergeours() {
+    git fetch --all && git merge -Xours origin/$args
 }
 
 # GIT alias: pulling upstream branch
 function gpp() {
     git pull
+}
+
+# To perform a `git pull` with a specific merge strategy, such as `-Xtheirs`, you can use the `git pull` command with the `--strategy` and `--strategy-option` flags. Here's how you can do it:
+function pull-rebase-theirs() {
+  git pull --rebase --strategy=recursive --strategy-option=theirs origin develop  
 }
 
 # GIT alias: pulling origin choose branch
@@ -161,6 +263,12 @@ function gup() {
     git checkout "$1"
     git pull
     git checkout "$c"
+}
+
+# GIT alias: quick command to help your code and push to remote
+function gadd() {
+    git add $args
+    gs
 }
 
 # GIT alias: quick command to help your code and push to remote
@@ -183,9 +291,18 @@ function gwip() {
 
 # GIT alias: for git commit -m
 function gcom() {
-    git add .
+    git status
     git commit -m $args
 }
+
+# ===============================
+# = PYTHON
+# ===============================
+
+function ppshow() {
+    python -m pip show $args    
+}
+
 
 # ===============================
 # = PROMPT
