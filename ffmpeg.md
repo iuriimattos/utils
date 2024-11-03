@@ -17,3 +17,15 @@ transcode OGG to 320kbps MP3
 ```
 ffmpeg -i "singing1.ogg" -vn -c:a libmp3lame -b:a 320k "song1.mp3"
 ```
+
+trim video:
+
+```sh
+ffmpeg -ss 00:01:10 -i ./input.mp4 -t 00:00:11 -c copy ./output.mp4
+```
+
+- `-ss 00:01:10`: Defines the starting point of the cut.
+- `-i ./input.mp4`: Specifies the input file.
+- `-t 00:00:20`: Defines the duration of the stretch to be cut.
+- `-c copy`: Copies audio and video flows without reunions.
+- `./output.mp4`: Output file name.
