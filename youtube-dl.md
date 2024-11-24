@@ -1,3 +1,9 @@
+# YT-DLP
+
+yt-dlp --download-sections "*00:36-01:38" -f "bv[ext=mp4]+ba[ext=m4a]/best[ext=mp4]/best" "https://www.youtube.com/watch?v=iubijJDUZaM" -o "Grinch"
+
+# YOUTUBE-DL
+
 ###### dont know what output
 ```
 youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4' (YOUTUBE_URL)
