@@ -75,8 +75,51 @@ function lsaa() {
     ls | sort LastWriteTime -Descending | Select -First 50
 }
 
+function cplsaa() {
+    ls | Sort-Object LastWriteTime -Descending | Select-Object -First 1 -ExpandProperty Name | Set-Clipboard
+}
+
+function cdlsaa() {
+    $latestItem = ls | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+    if ($latestItem.PSIsContainer) {
+        cd $latestItem.FullName
+    } else {
+        Write-Host "The latest item is not a directory."
+    }
+}
+
+
 function lsa() {
     Get-ChildItem | Sort-Object LastAccessTime -Descending
+}
+
+# ===============================
+# = SPRING
+# ===============================
+
+# Health: https://docs.spring.io/spring-boot/api/rest/actuator/health.html
+function springhealth() {
+    $argip = $args[0]
+    $argport = $args[1]
+    curl http://$($argip):$($argport)/actuator/health
+}
+
+# ===============================
+# = GitHub Copilot in the CLI
+# ===============================
+
+function github-copilot-suggest {
+    param (
+        [string]$description
+    )
+    gh copilot suggest $description
+}
+
+function github-copilot-explain {
+    param (
+        [string]$command
+    )
+    gh copilot explain $command
 }
 
 # ===============================
@@ -89,9 +132,17 @@ function mvnm2() {
 }
 
 # Maven: test class
-function mvnt() {
+# not work 
+# use 
+# mvn -o test -Dtest=JwtUtilTest
+function mvntest() {
     Write-Host 
     mvn -o test -Dtest=$args
+}
+
+# Maven: Spring Boot RUN
+function mvnrun() {
+    mvn spring-boot:run
 }
 
 # Maven: package
@@ -100,19 +151,20 @@ function mvncp() {
 }
 
 # Maven: install
+function mvncifull() {
+    mvn clean install
+}
+
+# Maven: install skiptest
 function mvnci() {
     mvn -o clean install -DskipTests
 }
 
 # Maven: update snapshots
 function mvnciu() {
-    mvn clean install -DskipTests -U
+    mvn clean install -U
 }
 
-# Maven: Spring Boot RUN
-function mvnrun() {
-    mvn spring-boot:run
-}
 # ===============================
 # = DOCKER AND WSL
 # ===============================
@@ -174,6 +226,11 @@ function gdu() {
 # GIT alias: search words inside commits message
 function glg() {
     git log --all --grep=$args
+}
+
+# GIT alias: search commits by author
+function glga() {
+    git log --author=$args
 }
 
 # GIT alias: status
@@ -257,6 +314,11 @@ function gpush() {
     git push origin --set-upstream $(git rev-parse --abbrev-ref HEAD)
 }
 
+# GIT alias: publish local branch to remote
+function gpushf() {
+    git push origin --set-upstream $(git rev-parse --abbrev-ref HEAD) -f
+}
+
 # GIT alias: update a branch then switch back to the current branch
 function gup() {
     $c=$(git rev-parse --abbrev-ref HEAD)
@@ -265,7 +327,7 @@ function gup() {
     git checkout "$c"
 }
 
-# GIT alias: quick command to help your code and push to remote
+# GIT alias: quick command to add your code and check stage and unstage changes
 function gadd() {
     git add $args
     gs
@@ -295,14 +357,43 @@ function gcom() {
     git commit -m $args
 }
 
+# GIT alias: git push origin
+function gcompush() {
+    gadd . && gcom $args && gpushf
+}
+
+# GIT alias: git push origin
+function gwipush() {
+    gcodb work_in_progress && git add . && gcom work_in_progress && grebase master && gpush
+}
+
 # ===============================
 # = PYTHON
 # ===============================
 
+<#
+.SYNOPSIS
+Displays detailed information about a Python package installed via pip.
+
+.DESCRIPTION
+The `ppshow` function uses the `pip show` command to display metadata about a specified Python package. 
+This includes details such as the package name, version, location, dependencies, and more.
+
+.PARAMETER args
+The name of the Python package for which information is to be displayed. 
+This parameter is passed directly to the `pip show` command.
+
+.EXAMPLE
+ppshow numpy
+This command will display detailed information about the `numpy` package.
+
+.NOTES
+- Ensure that Python and pip are installed and available in the system's PATH.
+- The function uses the `python -m pip show` command internally.
+#>
 function ppshow() {
     python -m pip show $args    
 }
-
 
 # ===============================
 # = PROMPT
