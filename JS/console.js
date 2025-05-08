@@ -7,6 +7,16 @@ document.querySelectorAll('yt-formatted-string').forEach(el => el.textContent.in
 //show all elements width greater than window width
 const query1=document.querySelectorAll('*').forEach(el => el.offsetWidth > window.innerWidth && console.log(el));
 
+//simulate a continuous click event.
+//azure devops add link modal link type combo box (dropdown menu)
+const inputElement = document.getElementById('__bolt-textfield-input-32'); // Replace 'myInput' with your input element's ID
+function keepClicking() {
+    inputElement.click();
+    setTimeout(keepClicking, 100); // Adjust the interval as needed
+}
+keepClicking();
+
+
 //print all divs properties
 const query1=document.querySelectorAll("div");for(i=0;i<query1.length;i++)console.log(query1[i].innerText);
 const query1=document.querySelectorAll("div");for(i=0;i<query1.length;i++)console.log(`Element ${i}: Width = ${query1[i].offsetWidth}, Class Name = ${query1[i].className}`);
