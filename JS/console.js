@@ -1,3 +1,6 @@
+//ERR_CERT_INVALID when no Proceed Anyway
+sendCommand(SecurityInterstitialCommandId.CMD_PROCEED)
+
 // youtube fastest
 $('video').playbackRate=16
 
