@@ -4,6 +4,8 @@
 
 [Really wish there was an “Open Folder” in current window option](https://forum.sublimetext.com/t/really-wish-there-was-an-open-folder-in-current-window-option/23378/2)
 
+[Not showing output](https://forum.sublimetext.com/t/not-showing-output/62891/5)
+
 [How to Configure Sublime Text 4 for Python Development](https://www.tabnine.com/blog/how-to-configure-sublime-text-4-for-python-development/)
 
 [Python Packaging User Guide » Tutorials » Installing Packages](https://packaging.python.org/en/latest/tutorials/installing-packages/)
