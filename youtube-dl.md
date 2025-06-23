@@ -1,5 +1,15 @@
 # YT-DLP
 
+###### update to nightly version
+```bash
+yt-dlp --update-to nightly
+```
+
+###### audio mp3 worst quality
+```bash
+yt-dlp -i --extract-audio --audio-format mp3 --audio-quality 0 "https://www.youtube.com/watch?v=Wdo-ZiHqbls" -o  "%(title)s.%(ext)s"
+```
+
 ###### trim video
 ```bash
 yt-dlp --download-sections "*00:36-01:38" -f "bv[ext=mp4]+ba[ext=m4a]/best[ext=mp4]/best" "https://www.youtube.com/watch?v=iubijJDUZaM" -o "Grinch"
