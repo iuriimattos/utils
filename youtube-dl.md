@@ -7,7 +7,7 @@ yt-dlp --update-to nightly
 
 ###### audio mp3 worst quality
 ```bash
-yt-dlp -i --extract-audio --audio-format mp3 --audio-quality 0 "https://www.youtube.com/watch?v=Wdo-ZiHqbls" -o  "%(title)s.%(ext)s"
+yt-dlp -o "%(title)s.%(ext)s" -i --extract-audio --audio-format mp3 --audio-quality 0 ${url}
 ```
 
 ###### trim video
