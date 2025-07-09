@@ -1,3 +1,5 @@
+if `C:\Program Files\nodejs` throw `'C:\Program' is not recognized as an internal or external command...` else `C:\Progra~1\nodejs\node.exe`
+
 [SharpKeys is a utility that manages a Registry key that allows Windows to remap one key to any other key.](https://github.com/randyrants/sharpkeys)
 
 [TreeSize](https://apps.microsoft.com/store/detail/treesize-free/XP9M26RSCLNT88?hl=en-us&gl=us)
