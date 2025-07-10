@@ -1,4 +1,4 @@
-[https://stackoverflow.com/questions/61196270/how-to-properly-use-3rd-party-dependencies-with-sublime-text-plugins](https://stackoverflow.com/questions/61196270/how-to-properly-use-3rd-party-dependencies-with-sublime-text-plugins)
+[How to properly use 3rd party dependencies with Sublime Text plugins?](https://stackoverflow.com/questions/61196270/how-to-properly-use-3rd-party-dependencies-with-sublime-text-plugins)
 
 [Unable to Manually Add New Packages to Sublime Text 3](https://stackoverflow.com/questions/39820895/unable-to-manually-add-new-packages-to-sublime-text-3)
 
