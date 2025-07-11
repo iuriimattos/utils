@@ -74,3 +74,24 @@ divArray.forEach(element => {
   const extractedNumber = parseInt(element.textContent.match(/\d+/)[0]);
   console.log(extractedNumber);
 });
+
+// delete shopee ad from search results
+const targetDiv = document.querySelector('div.inline-block.px-1.py-0\\.5.rounded-sm.bg-shopee-black26.text-xs\\/3.capitalize.text-white.whitespace-nowrap');
+if (targetDiv) {
+  // Go up the chain to find the div > a > div > div > div parent
+  // This is 5 levels up: targetDiv -> div -> div -> a -> div -> div
+  // Let's walk parent nodes:
+  let parent = targetDiv;
+  for (let i = 0; i < 5; i++) {
+    parent = parent.parentElement;
+    if (!parent) break;
+  }
+  if (parent) {
+    parent.remove(); // remove the element from DOM
+    console.log('Parent div removed.');
+  } else {
+    console.log('Could not find the parent element to remove.');
+  }
+} else {
+  console.log('Target div not found.');
+}
