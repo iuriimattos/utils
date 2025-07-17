@@ -54,6 +54,7 @@ public class ServiceTest {
     private ResponseEntity<Void> response;
     private TestRestTemplate template;
 
+    @Test
     public void executeTest(String id, String user) throws MalformedURLException, URISyntaxException {
 
         Query q = Mockito.mock(Query.class);
