@@ -1,7 +1,8 @@
 ROUND 2 DECIMALS WHEN MULTIPLE OF 5
 
 CREDITS me
-```
+
+```java
 public static BigDecimal roundWhenMultipleOf5(BigDecimal bigDecimal) {
   BigDecimal digits = bigDecimal.remainder(BigDecimal.ONE).movePointRight(bigDecimal.scale());
   boolean hasMinThreeDigits = digits.precision() - digits.scale() >= 3;
@@ -16,7 +17,8 @@ public static BigDecimal roundWhenMultipleOf5(BigDecimal bigDecimal) {
 ```
 
 CREDITS https://stackoverflow.com/a/58560435
-```
+
+```java
 public class NumberUtils {
 
     private NumberUtils() {
@@ -41,7 +43,8 @@ public class NumberUtils {
 
 MOCKITO JPA EntityManager
 CREDITS me
-```
+
+```java
 @ContextConfiguration
 @TestPropertySource(locations = "classpath:application-test.properties")
 @RunWith(SpringJUnit4ClassRunner.class)
