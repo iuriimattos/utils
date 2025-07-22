@@ -272,3 +272,45 @@ $ git diff HEAD HEAD~1 = $ git show differences between the latest commit and th
 $ git diff differences between the working tree and the index;
 
 $ git diff --cached differences between the latest commit and the index.)
+
+To replace the content of a file with the content of a stash entry, follow these steps:
+
+1. **Apply the stash without auto-merging**:
+   Use the `git stash apply` command to apply the stash entry without removing it or auto-merging.
+
+   ```bash
+   git stash apply
+   ```
+
+2. **Manually replace the file**:
+   Use the `git checkout` command to replace the file with the version from the stash.
+
+   ```bash
+   git checkout "stash@{0}" -- src/main/resources/application-default.properties
+
+   ```
+
+   Replace `stash@{0}` with the appropriate stash reference if needed.
+
+3. **Mark the conflict as resolved**:
+   After replacing the file, add it to the staging area to mark it as resolved.
+
+   ```bash
+   git add src/main/resources/application-default.properties
+   ```
+
+4. **Continue with the process**:
+   If you are in the middle of a rebase or merge, continue the process.
+
+   ```bash
+   git rebase --continue
+   # or
+   git merge --continue
+   ```
+
+5. **Drop the stash if no longer needed**:
+   If the stash is no longer required, drop it to clean up.
+
+   ```bash
+   git stash drop
+   ```
