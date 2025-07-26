@@ -14,6 +14,11 @@ function zmklink() {
     cmd /c mklink $args[0] $args[1]
 }
 
+function zversion() {
+    $PSversionTable
+}
+
+# Chocolatey
 function zrefreshenv() {
     Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1
     refreshenv
@@ -250,7 +255,7 @@ function gfo() {
 
 # GIT alias: checkout
 function gco() {
-    git checkout $args && gpp
+    git checkout $args
 }
 
 # GIT alias: checkout
@@ -376,11 +381,11 @@ function gwipush() {
 Displays detailed information about a Python package installed via pip.
 
 .DESCRIPTION
-The `ppshow` function uses the `pip show` command to display metadata about a specified Python package. 
+The `ppshow` function uses the `pip show` command to display metadata about a specified Python package.
 This includes details such as the package name, version, location, dependencies, and more.
 
 .PARAMETER args
-The name of the Python package for which information is to be displayed. 
+The name of the Python package for which information is to be displayed.
 This parameter is passed directly to the `pip show` command.
 
 .EXAMPLE
@@ -392,8 +397,33 @@ This command will display detailed information about the `numpy` package.
 - The function uses the `python -m pip show` command internally.
 #>
 function ppshow() {
-    python -m pip show $args    
+    python -m pip show $args
 }
+
+<#
+.SYNOPSIS
+Installs a Python package using pip.
+
+.DESCRIPTION
+The `ppinstall` function uses the `pip install` command to install a specified Python package.
+This function allows you to install Python packages directly from the command line.
+
+.PARAMETER args
+The name of the Python package to be installed.
+This parameter is passed directly to the `pip install` command.
+
+.EXAMPLE
+ppinstall numpy
+This command will install the `numpy` package.
+
+.NOTES
+- Ensure that Python and pip are installed and available in the system's PATH.
+- The function uses the `py -m pip install` command internally.
+#>
+function ppinstall() {
+    py -m pip install $args
+}
+
 
 # ===============================
 # = PROMPT
@@ -415,3 +445,7 @@ function prompt {
     $LASTEXITCODE = $origLastExitCode
     Write-Host $prompt   
 }
+
+# Scoop fix error:
+# The SSL connection could not be established, see inner exception.
+[Net.ServicePointManager]::SecurityProtocol = "tls, tls11, tls12, tls13, SystemDefault"
