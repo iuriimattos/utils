@@ -1,3 +1,5 @@
+[How to terminate all jobs running on a specific virtual desktop?](https://www.tenforums.com/virtualization/206207-how-terminate-all-jobs-running-specific-virtual-desktop.html)
+
 if `C:\Program Files\nodejs` throw `'C:\Program' is not recognized as an internal or external command...` else `C:\Progra~1\nodejs\node.exe`
 
 [SharpKeys is a utility that manages a Registry key that allows Windows to remap one key to any other key.](https://github.com/randyrants/sharpkeys)
