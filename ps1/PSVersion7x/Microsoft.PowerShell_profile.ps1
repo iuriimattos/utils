@@ -248,6 +248,11 @@ function gf() {
     git fetch --all
 }
 
+# GIT alias: fetch
+function gftag() {
+    git fetch --all --tags
+}
+
 # GIT alias: git fetch from origin with prune flag
 function gfo() {
     git fetch origin --prune
