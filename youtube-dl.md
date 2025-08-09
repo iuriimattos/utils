@@ -10,7 +10,16 @@ yt-dlp --update-to nightly
 yt-dlp -o "%(title)s.%(ext)s" -i --extract-audio --audio-format mp3 --audio-quality 0 ${url}
 ```
 
-###### trim video
+###### trim video new
+
+```bash
+PS>yt-dlp --version
+2025.06.12.233004
+
+PS>yt-dlp -f "bv[ext=mp4]+ba[ext=m4a]/best[ext=mp4]/best" "https://www.youtube.com/watch?v=uGZUI5pQxmE" -o "bullying_loja.mp4" --postprocessor-args "-ss 00:01:00 -to 00:08:13 -c copy"
+```
+
+###### trim video old
 ```bash
 yt-dlp --download-sections "*00:36-01:38" -f "bv[ext=mp4]+ba[ext=m4a]/best[ext=mp4]/best" "https://www.youtube.com/watch?v=iubijJDUZaM" -o "Grinch"
 ```
