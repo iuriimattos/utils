@@ -10,7 +10,7 @@ yt-dlp --update-to nightly
 yt-dlp -o "%(title)s.%(ext)s" -i --extract-audio --audio-format mp3 --audio-quality 0 ${url}
 ```
 
-###### trim video new
+###### trim video new and [for-android-mixplorer.md](/ubuntu/cli/yt-dlp-video-for-android-mixplorer.md)
 
 ```bash
 PS>yt-dlp --version
