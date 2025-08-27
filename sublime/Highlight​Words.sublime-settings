@@ -1,29 +1,94 @@
 {
+	//credits
+	//https://github.com/evandrocoan/HighlightWords
+
 	// The colors to highlight texts are specified by a list of theme scope names,
 	// and HighlightWords uses this list in circular order.
-	"colors_by_scope": [
-		"string",
-		"entity.name.class",
-		"variable.parameter",
-		"invalid.deprecated",
-		"invalid",
-		"support.function"
-	],
-	"whole_word": false,
-	"use_regex": false,
-	"ignore_case": false,
+	// change: "find_highlight": "var(grey)",
+
+	// Notepad++ colors
+	// "colors_by_scope": [
+	// 	"string",
+	// 	"entity.name.class",
+	// 	"variable.parameter",
+	// 	"invalid.deprecated",
+	// 	"invalid",
+	// 	"support.function",
+	// 	"meta.paragraph.list",
+	// 	"variable.source",
+	// 	"string.regexp",
+	// 	"support.type",
+	// 	"constant.numeric",
+	// 	"comment.block.documentation",
+	// 	"meta.preprocessor",
+	// 	"storage.modifier",
+	// 	"constant.other.symbol",
+	// 	"meta.require",
+	// 	"meta.selector",
+	// 	"brackethighlighter.tag",
+	// 	"brackethighlighter.curly",
+	// 	"brackethighlighter.quote",
+	// 	"markup.list",
+	// 	"sublimelinter.mark.warning",
+	// ],
+
+    // Monkay colors
+    "colors_by_scope": [
+        "constant.language", // AA2
+        "diff.changed", // AA8
+        "entity.name.filename", // AA9
+        "entity.name.tag", // AA10
+        "markup.underline.link", // AA24
+        "invalid.deprecated", // AA14
+        "markup.quote", // AA22
+        "markup.list.unnumbered.bullet", // AA21
+        "invalid", // AA13
+        "message.error", // AA25
+        "diff.deleted", // AA4
+        "diff.deleted.char", // AA5
+        "diff.inserted", // AA6
+        "diff.inserted.char", // AA7
+    ],
+
+	"whole_word": true,
+	"use_regex": true,
+	"ignore_case": true,
+	"active_selection_word": "function.call",
+
+	// Whether or not to add the word under the cursor into the find highlighted panel when opening it
+	"under_the_cursor": true,
+
+	// Whether or not to clean the highlight when closing the find highlighted input panel with escape
+	"clear_on_escape": false,
+
+	// The maximum characters a file to be computed can have
+	"file_size_limit": 4194304,
+
 	// Keywords to be always highlighted, clear the list to disable it.
 	// "keyword" are literally matched, and "color" refers to theme scope names.
-	// Note that json has some special characters like '\' should be escaped.
-
 	// "flag": 0 - regex, 1 - literal (default), 2 - regex and ignore case, 3 - literal and ignore case
-  //2 words in a sentence `(stream.*anyMatch).*`
-  //exclude anyMatch and search stream `^(?!.*anyMatch).*?(?:stream).*`
-  //  
+	// Note that json has some special characters like '\' should be escaped.
 	"permanent_highlight_keyword_color_mappings": [
-		{"keyword": "branchCode|0001|4310|6033|136", "color": "support.function", "flag": 0},
-		{"keyword": "TODO", "color": "support.function"},
-		{"keyword": "FIXIT .*", "color": "support.function", "flag": 2},
+
+		//"S"
+		//"N"
+		{"keyword": "FIXME|\"([S])\"|\"([N])\"", "color": "diff.deleted", "flag": 0},
+
+		{"keyword": "true|OK", "color": "diff.inserted.char", "flag": 0},
+
+		{"keyword": "groupid|impl", "color": "string", "flag": 0},
+
+		{"keyword": "TODO|Hibernate:|PRB|```", "color": "support.function", "flag": 0},
+
+		{"keyword": "Error|ERROR|error|_traceId|NOK", "color": "source.json meta.mapping.key.json string.quoted.double.json", "flag": 0},
+
+		{"keyword": "DONE|.*Impl\\.java:\\d+", "color": "entity.name.tag", "flag": 0},
+
+		//at com.groupid
+		//{"keyword": "^\\s*at\\s", "color": "invalid.deprecated", "flag": 0},
+
+		//https://
+		{"keyword": "https:\/\/", "color": "invalid.deprecated", "flag": 0},
 	]
 
 }
