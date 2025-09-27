@@ -10,7 +10,7 @@ function znewtab() {
 }
 
 #cmd /c mklink C:\Users\user\queries.sql C:\Users\user\AppData\Roaming\DBeaverData\workspace6\General\Scripts\Queries.sql
-function zmklink() {    
+function zmklink() {
     cmd /c mklink $args[0] $args[1]
 }
 
@@ -98,6 +98,147 @@ function lsa() {
     Get-ChildItem | Sort-Object LastAccessTime -Descending
 }
 
+<#
+.SYNOPSIS
+Lists directories recursively while excluding specific directories.
+
+.DESCRIPTION
+The `Get-IndentedDirectories` function recursively lists all directories in the current path, excluding directories that match a specified pattern (e.g., "node_modules").
+The output displays the directory names indented based on their depth in the directory structure.
+
+.PARAMETER ExcludePattern
+A string pattern to exclude directories from the output. Defaults to "node_modules".
+
+.EXAMPLE
+Get-IndentedDirectories
+This command will list all directories, excluding "node_modules", with indentation based on their depth.
+
+.EXAMPLE
+Get-IndentedDirectories -ExcludePattern "bin"
+This command will list all directories, excluding "bin", with indentation based on their depth.
+
+.NOTES
+- The function uses `Get-ChildItem` to retrieve directories and `Where-Object` to filter them.
+- Indentation is calculated based on the depth of the directory in the structure.
+#>
+function Get-IndentedDirectories {
+    param (
+        [string]$ExcludePattern = "node_modules"
+    )
+
+    Get-ChildItem -Recurse -Directory | Where-Object { $_.FullName -notmatch $ExcludePattern } | ForEach-Object {
+        $depth = $_.FullName.Split("\").Count
+        (" " * ($depth * 2)) + $_.Name
+    }
+}
+
+
+<#
+.SYNOPSIS
+Creates nested directories step-by-step starting from the current directory when a leading single backslash is used,
+or creates absolute/relative directories normally.
+
+.DESCRIPTION
+New-MkDirsFromCwd accepts one or more path strings and ensures each path segment exists.
+- If a path starts with a single leading backslash (for example: "\storage\downloads\Sync"), it is treated as relative
+  to the current directory (so it creates .\storage, .\storage\downloads, etc).
+- Drive-rooted paths (C:\...) and UNC paths (\\server\share\...) are honored as absolute.
+- Supports '.' and '..' segments.
+- Supports -WhatIf and -Confirm via ShouldProcess.
+
+.PARAMETER Path
+One or more path strings to create. Paths may be relative, begin with a single leading backslash
+to indicate "from current directory", or be absolute (drive root or UNC).
+
+.EXAMPLE
+# Dot-source then create a folder chain relative to current directory:
+. .\mkdirs.ps1
+New-MkDirsFromCwd '\storage\downloads\Sync'
+
+.EXAMPLE
+# Create multiple paths at once:
+New-MkDirsFromCwd 'logs\2025\09' '\storage\downloads\Sync'
+
+.EXAMPLE
+# Dry run (no changes) to see what would be created:
+New-MkDirsFromCwd '\storage\downloads\Sync' -WhatIf
+
+.NOTES
+Author: Generated snippet
+Date: 2025-09-27
+This function prints "Created: <fullpath>" for each directory it creates and "Exists: <fullpath>" for existing ones.
+#>
+function New-MkDirsFromCwd {
+    [CmdletBinding(SupportsShouldProcess = $true)]
+    param(
+        [Parameter(Mandatory = $true, Position = 0, ValueFromPipeline = $true)]
+        [string[]] $Path
+    )
+
+    process {
+        foreach ($orig in $Path) {
+            if ([string]::IsNullOrWhiteSpace($orig)) { continue }
+
+            # Determine base and remaining path
+            if ($orig -match '^[\\/]{2}') {
+                # UNC absolute (\\server\share\...)
+                $base = [System.IO.Path]::GetPathRoot($orig)
+                $rest = $orig.Substring($base.Length).TrimStart('\','/')
+            }
+            elseif ($orig.StartsWith('\') -or $orig.StartsWith('/')) {
+                # Leading single slash: treat as relative to current directory
+                $base = (Get-Location).ProviderPath
+                $rest = $orig.TrimStart('\','/')
+            }
+            elseif ([System.IO.Path]::IsPathRooted($orig)) {
+                # Drive-rooted absolute path (C:\...)
+                $base = [System.IO.Path]::GetPathRoot($orig)
+                $rest = $orig.Substring($base.Length).TrimStart('\','/')
+            }
+            else {
+                # Relative path from current directory
+                $base = (Get-Location).ProviderPath
+                $rest = $orig
+            }
+
+            if ([string]::IsNullOrEmpty($rest)) {
+                # Nothing to create beyond the root/base
+                if (-not (Test-Path -Path $base -PathType Container)) {
+                    if ($PSCmdlet.ShouldProcess($base, "Create directory")) {
+                        New-Item -Path $base -ItemType Directory -Force | Out-Null
+                        Write-Output "Created: $base"
+                    }
+                }
+                else {
+                    Write-Output "Exists: $base"
+                }
+                continue
+            }
+
+            $segments = $rest -split '[\\/]+'
+            foreach ($seg in $segments) {
+                if ($seg -in @('', '.')) { continue }
+                if ($seg -eq '..') {
+                    $parent = Split-Path -Path $base -Parent
+                    if ($parent) { $base = $parent }
+                    continue
+                }
+                $base = Join-Path $base $seg
+                if (-not (Test-Path -Path $base -PathType Container)) {
+                    if ($PSCmdlet.ShouldProcess($base, "Create directory")) {
+                        New-Item -Path $base -ItemType Directory -Force | Out-Null
+                        Write-Output "Created: $base"
+                    }
+                }
+                else {
+                    Write-Output "Exists: $base"
+                }
+            }
+        }
+    }
+}
+
+
 # ===============================
 # = SPRING
 # ===============================
@@ -137,11 +278,11 @@ function mvnm2() {
 }
 
 # Maven: test class
-# not work 
-# use 
+# not work
+# use
 # mvn -o test -Dtest=JwtUtilTest
 function mvntest() {
-    Write-Host 
+    Write-Host
     mvn -o test -Dtest=$args
 }
 
@@ -311,7 +452,7 @@ function gpp() {
 
 # To perform a `git pull` with a specific merge strategy, such as `-Xtheirs`, you can use the `git pull` command with the `--strategy` and `--strategy-option` flags. Here's how you can do it:
 function pull-rebase-theirs() {
-  git pull --rebase --strategy=recursive --strategy-option=theirs origin develop  
+  git pull --rebase --strategy=recursive --strategy-option=theirs origin develop
 }
 
 # GIT alias: pulling origin choose branch
@@ -356,8 +497,8 @@ function gsave() {
 
 # GIT alias: for git commit wip
 function gwip() {
-    $msg = "Work In Progress"    
-    git add .  
+    $msg = "Work In Progress"
+    git add .
     git commit -m "$msg" --no-verify
 }
 
@@ -429,6 +570,30 @@ function ppinstall() {
     py -m pip install $args
 }
 
+<#
+.SYNOPSIS
+Upgrades pip to the latest version.
+
+.DESCRIPTION
+The `upgrade-pip` function uses the specified Python executable to upgrade pip to the latest version.
+This function allows you to run the pip upgrade command directly from the command line.
+
+.PARAMETER pythonPath
+The path to the Python executable to be used for upgrading pip.
+
+.EXAMPLE
+upgrade-pip "C:\Python39\python.exe"
+This command will upgrade pip using the Python executable located at `C:\Python39\python.exe`.
+
+.NOTES
+- Ensure that the specified Python executable exists and is accessible.
+- The function uses the `-m pip install --upgrade pip` command internally.
+#>
+function ppupgrade() {
+    py -m pip install --upgrade pip
+}
+
+
 
 # ===============================
 # = PROMPT
@@ -437,7 +602,7 @@ function ppinstall() {
 # Custom Posh-Git
 Import-Module posh-git
 function prompt {
-    Write-Host 
+    Write-Host
     $origLastExitCode = $LASTEXITCODE
     $parentFullPath = Split-Path -path (Get-Location)
     $parentFolderName = Split-Path -leaf -path $($parentFullPath)
@@ -448,7 +613,7 @@ function prompt {
     }
     $prompt += "$(if ($PsDebugContext) {' [DBG]:'} else {''})$('>' * ($nestedPromptLevel + 1)) "
     $LASTEXITCODE = $origLastExitCode
-    Write-Host $prompt   
+    Write-Host $prompt
 }
 
 # Scoop fix error:
