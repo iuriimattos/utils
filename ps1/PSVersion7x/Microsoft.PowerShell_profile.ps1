@@ -165,32 +165,27 @@ function ttree {
     }
 }
 
+# Define the wget function
 function wwget {
     <#
     .SYNOPSIS
-    Downloads a file from a URL with a progress bar, automatically using the filename from the URL if -OutFile is not specified.
+    Downloads a file from a URL and shows a progress bar.
+    Works reliably with GitHub and HTTPS.
 
     .DESCRIPTION
-    wwget mimics Linux 'wget' in PowerShell 7+.
-    Automatically extracts the filename from the URL if -OutFile is not provided.
-    Shows a progress bar and is GitHub-safe.
+    Uses Invoke-WebRequest directly (which handles redirects and HTTPS properly).
+    Automatically infers the filename from the URL if -OutFile is not provided.
 
     .PARAMETER Url
-    The URL of the file to download.
+    The URL to download.
 
     .PARAMETER OutFile
-    (Optional) The destination file path. If not provided, the filename is inferred from the URL.
-
-    .EXAMPLE
-    wwget "https://github.com/dcevm/dcevm/releases/download/light-jdk8u181/DCEVM-8u181-installer.jar"
-    Downloads the file with a progress bar.
+    (Optional) The destination file. Defaults to the filename in the URL.
     #>
 
     param(
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true, Position = 0)]
         [string]$Url,
-
-        [Parameter(Mandatory=$false)]
         [string]$OutFile
     )
 
@@ -203,49 +198,20 @@ function wwget {
     }
 
     try {
-        # Force TLS 1.2
         [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-        # Create web request with GitHub-safe headers
-        $request = [System.Net.HttpWebRequest]::Create($Url)
-        $request.UserAgent = "PowerShell wwget"
+        # GitHub requires a real User-Agent
+        $headers = @{ "User-Agent" = "PowerShell wwget" }
 
-        $response = $request.GetResponse()
-        $totalBytes = $response.ContentLength
-        $stream = $response.GetResponseStream()
-        $fileStream = [System.IO.File]::Open($OutFile, [System.IO.FileMode]::Create)
+        Write-Host "Downloading $OutFile ..."
+        Invoke-WebRequest -Uri $Url -OutFile $OutFile -Headers $headers -UseBasicParsing -Verbose:$false
 
-        try {
-            $buffer = New-Object byte[] 8192
-            $readBytes = 0
-
-            do {
-                $count = $stream.Read($buffer, 0, $buffer.Length)
-                if ($count -gt 0) {
-                    $fileStream.Write($buffer, 0, $count)
-                    $readBytes += $count
-
-                    # Update progress bar
-                    $percent = [math]::Round(($readBytes / $totalBytes) * 100, 2)
-                    Write-Progress -Activity "Downloading $OutFile" `
-                                   -Status "$percent% complete" `
-                                   -PercentComplete $percent
-                }
-            } while ($count -gt 0)
-        }
-        finally {
-            $fileStream.Close()
-            $stream.Close()
-            $response.Close()
-        }
-
-        Write-Host "`nDownloaded '$OutFile'"
+        Write-Host "Downloaded '$OutFile'"
     }
     catch {
         Write-Error "Download failed: $_"
     }
 }
-
 # Optionally, make sure wget is recognized as a command (alias is just for convenience)
 #Set-Alias wget wget
 
