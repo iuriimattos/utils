@@ -10,7 +10,7 @@ function znewtab() {
 }
 
 #cmd /c mklink C:\Users\user\queries.sql C:\Users\user\AppData\Roaming\DBeaverData\workspace6\General\Scripts\Queries.sql
-function zmklink() {
+function zmklink() {    
     cmd /c mklink $args[0] $args[1]
 }
 
@@ -38,6 +38,38 @@ function tailf() {
 function cppwd() {
     (pwd).Path | CLIP
 }
+
+# UTF-16LE
+function cpfile {
+    <#
+    .SYNOPSIS
+    Copies the content of a specified file to the clipboard with correct UTF-8 handling.
+
+    .DESCRIPTION
+    Reads the content of a file using UTF-8 encoding and copies it to the clipboard using Set-Clipboard,
+    which handles Unicode correctly in PowerShell 7+.
+
+    .PARAMETER FilePath
+    Path to the file whose content will be copied.
+
+    .EXAMPLE
+    cpfile -FilePath .\texto.txt
+    #>
+
+    param (
+        [Parameter(Mandatory = $true)]
+        [string]$FilePath
+    )
+
+    if (Test-Path -Path $FilePath) {
+        $content = Get-Content -Path $FilePath -Raw -Encoding UTF8
+        Set-Clipboard -Value $content
+        Write-Host "Content of '$FilePath' has been copied to the clipboard."
+    } else {
+        Write-Host "The file '$FilePath' does not exist. Please provide a valid path."
+    }
+}
+
 
 ## https://stackoverflow.com/a/69565104
 #function rmrf([string]$Path) {
@@ -121,7 +153,8 @@ This command will list all directories, excluding "bin", with indentation based 
 - The function uses `Get-ChildItem` to retrieve directories and `Where-Object` to filter them.
 - Indentation is calculated based on the depth of the directory in the structure.
 #>
-function Get-IndentedDirectories {
+# Like Tree . function
+function ttree {
     param (
         [string]$ExcludePattern = "node_modules"
     )
@@ -132,6 +165,90 @@ function Get-IndentedDirectories {
     }
 }
 
+function wwget {
+    <#
+    .SYNOPSIS
+    Downloads a file from a URL with a progress bar, automatically using the filename from the URL if -OutFile is not specified.
+
+    .DESCRIPTION
+    wwget mimics Linux 'wget' in PowerShell 7+.
+    Automatically extracts the filename from the URL if -OutFile is not provided.
+    Shows a progress bar and is GitHub-safe.
+
+    .PARAMETER Url
+    The URL of the file to download.
+
+    .PARAMETER OutFile
+    (Optional) The destination file path. If not provided, the filename is inferred from the URL.
+
+    .EXAMPLE
+    wwget "https://github.com/dcevm/dcevm/releases/download/light-jdk8u181/DCEVM-8u181-installer.jar"
+    Downloads the file with a progress bar.
+    #>
+
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$Url,
+
+        [Parameter(Mandatory=$false)]
+        [string]$OutFile
+    )
+
+    if (-not $OutFile) {
+        $OutFile = [System.IO.Path]::GetFileName($Url)
+        if (-not $OutFile) {
+            Write-Error "Cannot determine filename from URL. Please provide -OutFile."
+            return
+        }
+    }
+
+    try {
+        # Force TLS 1.2
+        [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+
+        # Create web request with GitHub-safe headers
+        $request = [System.Net.HttpWebRequest]::Create($Url)
+        $request.UserAgent = "PowerShell wwget"
+
+        $response = $request.GetResponse()
+        $totalBytes = $response.ContentLength
+        $stream = $response.GetResponseStream()
+        $fileStream = [System.IO.File]::Open($OutFile, [System.IO.FileMode]::Create)
+
+        try {
+            $buffer = New-Object byte[] 8192
+            $readBytes = 0
+
+            do {
+                $count = $stream.Read($buffer, 0, $buffer.Length)
+                if ($count -gt 0) {
+                    $fileStream.Write($buffer, 0, $count)
+                    $readBytes += $count
+
+                    # Update progress bar
+                    $percent = [math]::Round(($readBytes / $totalBytes) * 100, 2)
+                    Write-Progress -Activity "Downloading $OutFile" `
+                                   -Status "$percent% complete" `
+                                   -PercentComplete $percent
+                }
+            } while ($count -gt 0)
+        }
+        finally {
+            $fileStream.Close()
+            $stream.Close()
+            $response.Close()
+        }
+
+        Write-Host "`nDownloaded '$OutFile'"
+    }
+    catch {
+        Write-Error "Download failed: $_"
+    }
+}
+
+# Optionally, make sure wget is recognized as a command (alias is just for convenience)
+#Set-Alias wget wget
+
 
 <#
 .SYNOPSIS
@@ -139,7 +256,7 @@ Creates nested directories step-by-step starting from the current directory when
 or creates absolute/relative directories normally.
 
 .DESCRIPTION
-New-MkDirsFromCwd accepts one or more path strings and ensures each path segment exists.
+mmkdirsfromcwd accepts one or more path strings and ensures each path segment exists.
 - If a path starts with a single leading backslash (for example: "\storage\downloads\Sync"), it is treated as relative
   to the current directory (so it creates .\storage, .\storage\downloads, etc).
 - Drive-rooted paths (C:\...) and UNC paths (\\server\share\...) are honored as absolute.
@@ -153,22 +270,22 @@ to indicate "from current directory", or be absolute (drive root or UNC).
 .EXAMPLE
 # Dot-source then create a folder chain relative to current directory:
 . .\mkdirs.ps1
-New-MkDirsFromCwd '\storage\downloads\Sync'
+mmkdirsfromcwd '\storage\downloads\Sync'
 
 .EXAMPLE
 # Create multiple paths at once:
-New-MkDirsFromCwd 'logs\2025\09' '\storage\downloads\Sync'
+mmkdirsfromcwd 'logs\2025\09' '\storage\downloads\Sync'
 
 .EXAMPLE
 # Dry run (no changes) to see what would be created:
-New-MkDirsFromCwd '\storage\downloads\Sync' -WhatIf
+mmkdirsfromcwd '\storage\downloads\Sync' -WhatIf
 
 .NOTES
 Author: Generated snippet
 Date: 2025-09-27
 This function prints "Created: <fullpath>" for each directory it creates and "Exists: <fullpath>" for existing ones.
 #>
-function New-MkDirsFromCwd {
+function mmkdirsfromcwd {
     [CmdletBinding(SupportsShouldProcess = $true)]
     param(
         [Parameter(Mandatory = $true, Position = 0, ValueFromPipeline = $true)]
@@ -278,11 +395,11 @@ function mvnm2() {
 }
 
 # Maven: test class
-# not work
-# use
+# not work 
+# use 
 # mvn -o test -Dtest=JwtUtilTest
 function mvntest() {
-    Write-Host
+    Write-Host 
     mvn -o test -Dtest=$args
 }
 
@@ -452,7 +569,7 @@ function gpp() {
 
 # To perform a `git pull` with a specific merge strategy, such as `-Xtheirs`, you can use the `git pull` command with the `--strategy` and `--strategy-option` flags. Here's how you can do it:
 function pull-rebase-theirs() {
-  git pull --rebase --strategy=recursive --strategy-option=theirs origin develop
+  git pull --rebase --strategy=recursive --strategy-option=theirs origin develop  
 }
 
 # GIT alias: pulling origin choose branch
@@ -497,8 +614,8 @@ function gsave() {
 
 # GIT alias: for git commit wip
 function gwip() {
-    $msg = "Work In Progress"
-    git add .
+    $msg = "Work In Progress"    
+    git add .  
     git commit -m "$msg" --no-verify
 }
 
@@ -543,7 +660,7 @@ This command will display detailed information about the `numpy` package.
 - The function uses the `python -m pip show` command internally.
 #>
 function ppshow() {
-    python -m pip show $args
+    py -m pip show $args
 }
 
 <#
@@ -602,7 +719,7 @@ function ppupgrade() {
 # Custom Posh-Git
 Import-Module posh-git
 function prompt {
-    Write-Host
+    Write-Host 
     $origLastExitCode = $LASTEXITCODE
     $parentFullPath = Split-Path -path (Get-Location)
     $parentFolderName = Split-Path -leaf -path $($parentFullPath)
@@ -613,7 +730,7 @@ function prompt {
     }
     $prompt += "$(if ($PsDebugContext) {' [DBG]:'} else {''})$('>' * ($nestedPromptLevel + 1)) "
     $LASTEXITCODE = $origLastExitCode
-    Write-Host $prompt
+    Write-Host $prompt   
 }
 
 # Scoop fix error:
