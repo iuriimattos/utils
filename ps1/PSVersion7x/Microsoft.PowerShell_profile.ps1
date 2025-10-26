@@ -10,7 +10,7 @@ function znewtab() {
 }
 
 #cmd /c mklink C:\Users\user\queries.sql C:\Users\user\AppData\Roaming\DBeaverData\workspace6\General\Scripts\Queries.sql
-function zmklink() {    
+function zmklink() {
     cmd /c mklink $args[0] $args[1]
 }
 
@@ -33,6 +33,30 @@ function cprobo([string]$Source, [string]$Destination) {
 function tailf() {
     Get-ChildItem $args | Foreach-Object -Parallel { Get-Content $_ -Tail 1 -Wait }
 }
+
+# Function to copy the parent folder name to the clipboard
+function cpfolder() {
+    <#
+    .SYNOPSIS
+    Copies the parent folder name of the current directory to the clipboard.
+
+    .DESCRIPTION
+    Retrieves the name of the parent folder of the current working directory
+    and copies it to the clipboard.
+
+    .EXAMPLE
+    cpparent
+    #>
+
+    $parentFolderName = Split-Path -Path (Get-Location) -Leaf
+    if ($parentFolderName) {
+        $parentFolderName | Set-Clipboard
+        Write-Host "Parent folder name '$parentFolderName' has been copied to the clipboard."
+    } else {
+        Write-Host "No parent folder found."
+    }
+}
+
 
 # https://stackoverflow.com/a/43633385
 function cppwd() {
@@ -361,11 +385,11 @@ function mvnm2() {
 }
 
 # Maven: test class
-# not work 
-# use 
+# not work
+# use
 # mvn -o test -Dtest=JwtUtilTest
 function mvntest() {
-    Write-Host 
+    Write-Host
     mvn -o test -Dtest=$args
 }
 
@@ -535,7 +559,7 @@ function gpp() {
 
 # To perform a `git pull` with a specific merge strategy, such as `-Xtheirs`, you can use the `git pull` command with the `--strategy` and `--strategy-option` flags. Here's how you can do it:
 function pull-rebase-theirs() {
-  git pull --rebase --strategy=recursive --strategy-option=theirs origin develop  
+  git pull --rebase --strategy=recursive --strategy-option=theirs origin develop
 }
 
 # GIT alias: pulling origin choose branch
@@ -580,8 +604,8 @@ function gsave() {
 
 # GIT alias: for git commit wip
 function gwip() {
-    $msg = "Work In Progress"    
-    git add .  
+    $msg = "Work In Progress"
+    #git add .
     git commit -m "$msg" --no-verify
 }
 
@@ -599,6 +623,16 @@ function gcompush() {
 # GIT alias: git push origin
 function gwipush() {
     gcodb work_in_progress && git add . && gcom work_in_progress && grebase master && gpush
+}
+
+# GIT alias: undo last commit but keep changes in working directory
+function git-undo-commit() {
+    git reset --soft HEAD~1
+}
+
+# GIT alias: show remote details
+function gremote() {
+    git remote show $args
 }
 
 # ===============================
@@ -677,6 +711,10 @@ function ppupgrade() {
 }
 
 
+# https://stackoverflow.com/questions/7384789/how-to-increase-sqlplus-column-output-length?answertab=modifieddesc#tab-top
+function output-length-sqlplus() {
+    set linesize 32767
+}
 
 # ===============================
 # = PROMPT
@@ -685,7 +723,7 @@ function ppupgrade() {
 # Custom Posh-Git
 Import-Module posh-git
 function prompt {
-    Write-Host 
+    Write-Host
     $origLastExitCode = $LASTEXITCODE
     $parentFullPath = Split-Path -path (Get-Location)
     $parentFolderName = Split-Path -leaf -path $($parentFullPath)
@@ -696,7 +734,7 @@ function prompt {
     }
     $prompt += "$(if ($PsDebugContext) {' [DBG]:'} else {''})$('>' * ($nestedPromptLevel + 1)) "
     $LASTEXITCODE = $origLastExitCode
-    Write-Host $prompt   
+    Write-Host $prompt
 }
 
 # Scoop fix error:
