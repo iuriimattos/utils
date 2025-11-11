@@ -154,31 +154,31 @@ function lsa() {
     Get-ChildItem | Sort-Object LastAccessTime -Descending
 }
 
-<#
-.SYNOPSIS
-Lists directories recursively while excluding specific directories.
-
-.DESCRIPTION
-The `Get-IndentedDirectories` function recursively lists all directories in the current path, excluding directories that match a specified pattern (e.g., "node_modules").
-The output displays the directory names indented based on their depth in the directory structure.
-
-.PARAMETER ExcludePattern
-A string pattern to exclude directories from the output. Defaults to "node_modules".
-
-.EXAMPLE
-Get-IndentedDirectories
-This command will list all directories, excluding "node_modules", with indentation based on their depth.
-
-.EXAMPLE
-Get-IndentedDirectories -ExcludePattern "bin"
-This command will list all directories, excluding "bin", with indentation based on their depth.
-
-.NOTES
-- The function uses `Get-ChildItem` to retrieve directories and `Where-Object` to filter them.
-- Indentation is calculated based on the depth of the directory in the structure.
-#>
-# Like Tree . function
 function ttree {
+    <#
+    .SYNOPSIS
+    Lists directories recursively while excluding specific directories.
+
+    .DESCRIPTION
+    The `Get-IndentedDirectories` function recursively lists all directories in the current path, excluding directories that match a specified pattern (e.g., "node_modules").
+    The output displays the directory names indented based on their depth in the directory structure.
+
+    .PARAMETER ExcludePattern
+    A string pattern to exclude directories from the output. Defaults to "node_modules".
+
+    .EXAMPLE
+    Get-IndentedDirectories
+    This command will list all directories, excluding "node_modules", with indentation based on their depth.
+
+    .EXAMPLE
+    Get-IndentedDirectories -ExcludePattern "bin"
+    This command will list all directories, excluding "bin", with indentation based on their depth.
+
+    .NOTES
+    - The function uses `Get-ChildItem` to retrieve directories and `Where-Object` to filter them.
+    - Indentation is calculated based on the depth of the directory in the structure.
+    #>
+    # Like Tree . function
     param (
         [string]$ExcludePattern = "node_modules"
     )
@@ -239,43 +239,42 @@ function wwget {
 # Optionally, make sure wget is recognized as a command (alias is just for convenience)
 #Set-Alias wget wget
 
-
-<#
-.SYNOPSIS
-Creates nested directories step-by-step starting from the current directory when a leading single backslash is used,
-or creates absolute/relative directories normally.
-
-.DESCRIPTION
-mmkdirsfromcwd accepts one or more path strings and ensures each path segment exists.
-- If a path starts with a single leading backslash (for example: "\storage\downloads\Sync"), it is treated as relative
-  to the current directory (so it creates .\storage, .\storage\downloads, etc).
-- Drive-rooted paths (C:\...) and UNC paths (\\server\share\...) are honored as absolute.
-- Supports '.' and '..' segments.
-- Supports -WhatIf and -Confirm via ShouldProcess.
-
-.PARAMETER Path
-One or more path strings to create. Paths may be relative, begin with a single leading backslash
-to indicate "from current directory", or be absolute (drive root or UNC).
-
-.EXAMPLE
-# Dot-source then create a folder chain relative to current directory:
-. .\mkdirs.ps1
-mmkdirsfromcwd '\storage\downloads\Sync'
-
-.EXAMPLE
-# Create multiple paths at once:
-mmkdirsfromcwd 'logs\2025\09' '\storage\downloads\Sync'
-
-.EXAMPLE
-# Dry run (no changes) to see what would be created:
-mmkdirsfromcwd '\storage\downloads\Sync' -WhatIf
-
-.NOTES
-Author: Generated snippet
-Date: 2025-09-27
-This function prints "Created: <fullpath>" for each directory it creates and "Exists: <fullpath>" for existing ones.
-#>
 function mmkdirsfromcwd {
+    <#
+    .SYNOPSIS
+    Creates nested directories step-by-step starting from the current directory when a leading single backslash is used,
+    or creates absolute/relative directories normally.
+
+    .DESCRIPTION
+    mmkdirsfromcwd accepts one or more path strings and ensures each path segment exists.
+    - If a path starts with a single leading backslash (for example: "\storage\downloads\Sync"), it is treated as relative
+      to the current directory (so it creates .\storage, .\storage\downloads, etc).
+    - Drive-rooted paths (C:\...) and UNC paths (\\server\share\...) are honored as absolute.
+    - Supports '.' and '..' segments.
+    - Supports -WhatIf and -Confirm via ShouldProcess.
+
+    .PARAMETER Path
+    One or more path strings to create. Paths may be relative, begin with a single leading backslash
+    to indicate "from current directory", or be absolute (drive root or UNC).
+
+    .EXAMPLE
+    # Dot-source then create a folder chain relative to current directory:
+    . .\mkdirs.ps1
+    mmkdirsfromcwd '\storage\downloads\Sync'
+
+    .EXAMPLE
+    # Create multiple paths at once:
+    mmkdirsfromcwd 'logs\2025\09' '\storage\downloads\Sync'
+
+    .EXAMPLE
+    # Dry run (no changes) to see what would be created:
+    mmkdirsfromcwd '\storage\downloads\Sync' -WhatIf
+
+    .NOTES
+    Author: Generated snippet
+    Date: 2025-09-27
+    This function prints "Created: <fullpath>" for each directory it creates and "Exists: <fullpath>" for existing ones.
+    #>
     [CmdletBinding(SupportsShouldProcess = $true)]
     param(
         [Parameter(Mandatory = $true, Position = 0, ValueFromPipeline = $true)]
@@ -345,6 +344,33 @@ function mmkdirsfromcwd {
     }
 }
 
+function catpaged {
+    <#
+    .SYNOPSIS
+    Displays the content of a file in a scrollable, paged view.
+
+    .DESCRIPTION
+    Reads the content of a file using UTF-8 encoding and displays it in a pager using Out-Host -Paging.
+    This allows you to scroll line by line or page by page, similar to 'less' on Unix.
+
+    .PARAMETER FilePath
+    Path to the file whose content will be displayed.
+
+    .EXAMPLE
+    catpaged -FilePath .\example.txt
+    #>
+
+    param (
+        [Parameter(Mandatory = $true)]
+        [string]$FilePath
+    )
+
+    if (Test-Path -Path $FilePath) {
+        Get-Content -Path $FilePath -Encoding UTF8 | Out-Host -Paging
+    } else {
+        Write-Host "The file '$FilePath' does not exist. Please provide a valid path."
+    }
+}
 
 # ===============================
 # = SPRING
@@ -639,74 +665,74 @@ function gremote() {
 # = PYTHON
 # ===============================
 
-<#
-.SYNOPSIS
-Displays detailed information about a Python package installed via pip.
-
-.DESCRIPTION
-The `ppshow` function uses the `pip show` command to display metadata about a specified Python package.
-This includes details such as the package name, version, location, dependencies, and more.
-
-.PARAMETER args
-The name of the Python package for which information is to be displayed.
-This parameter is passed directly to the `pip show` command.
-
-.EXAMPLE
-ppshow numpy
-This command will display detailed information about the `numpy` package.
-
-.NOTES
-- Ensure that Python and pip are installed and available in the system's PATH.
-- The function uses the `python -m pip show` command internally.
-#>
 function ppshow() {
+    <#
+    .SYNOPSIS
+    Displays detailed information about a Python package installed via pip.
+
+    .DESCRIPTION
+    The `ppshow` function uses the `pip show` command to display metadata about a specified Python package.
+    This includes details such as the package name, version, location, dependencies, and more.
+
+    .PARAMETER args
+    The name of the Python package for which information is to be displayed.
+    This parameter is passed directly to the `pip show` command.
+
+    .EXAMPLE
+    ppshow numpy
+    This command will display detailed information about the `numpy` package.
+
+    .NOTES
+    - Ensure that Python and pip are installed and available in the system's PATH.
+    - The function uses the `python -m pip show` command internally.
+    #>
     py -m pip show $args
 }
 
-<#
-.SYNOPSIS
-Installs a Python package using pip.
-
-.DESCRIPTION
-The `ppinstall` function uses the `pip install` command to install a specified Python package.
-This function allows you to install Python packages directly from the command line.
-
-.PARAMETER args
-The name of the Python package to be installed.
-This parameter is passed directly to the `pip install` command.
-
-.EXAMPLE
-ppinstall numpy
-This command will install the `numpy` package.
-
-.NOTES
-- Ensure that Python and pip are installed and available in the system's PATH.
-- The function uses the `py -m pip install` command internally.
-#>
 function ppinstall() {
+    <#
+    .SYNOPSIS
+    Installs a Python package using pip.
+
+    .DESCRIPTION
+    The `ppinstall` function uses the `pip install` command to install a specified Python package.
+    This function allows you to install Python packages directly from the command line.
+
+    .PARAMETER args
+    The name of the Python package to be installed.
+    This parameter is passed directly to the `pip install` command.
+
+    .EXAMPLE
+    ppinstall numpy
+    This command will install the `numpy` package.
+
+    .NOTES
+    - Ensure that Python and pip are installed and available in the system's PATH.
+    - The function uses the `py -m pip install` command internally.
+    #>
     py -m pip install $args
 }
 
-<#
-.SYNOPSIS
-Upgrades pip to the latest version.
-
-.DESCRIPTION
-The `upgrade-pip` function uses the specified Python executable to upgrade pip to the latest version.
-This function allows you to run the pip upgrade command directly from the command line.
-
-.PARAMETER pythonPath
-The path to the Python executable to be used for upgrading pip.
-
-.EXAMPLE
-upgrade-pip "C:\Python39\python.exe"
-This command will upgrade pip using the Python executable located at `C:\Python39\python.exe`.
-
-.NOTES
-- Ensure that the specified Python executable exists and is accessible.
-- The function uses the `-m pip install --upgrade pip` command internally.
-#>
 function ppupgrade() {
+    <#
+    .SYNOPSIS
+    Upgrades pip to the latest version.
+
+    .DESCRIPTION
+    The `upgrade-pip` function uses the specified Python executable to upgrade pip to the latest version.
+    This function allows you to run the pip upgrade command directly from the command line.
+
+    .PARAMETER pythonPath
+    The path to the Python executable to be used for upgrading pip.
+
+    .EXAMPLE
+    upgrade-pip "C:\Python39\python.exe"
+    This command will upgrade pip using the Python executable located at `C:\Python39\python.exe`.
+
+    .NOTES
+    - Ensure that the specified Python executable exists and is accessible.
+    - The function uses the `-m pip install --upgrade pip` command internally.
+    #>
     py -m pip install --upgrade pip
 }
 
