@@ -661,6 +661,25 @@ function gremote() {
     git remote show $args
 }
 
+# GIT alias: add all, use previous commit message and push
+function gamendpush() {
+    <#
+    .SYNOPSIS
+    Stages all changes, amends the last commit without changing the commit message, and force-pushes the branch with lease.
+
+    .DESCRIPTION
+    This function automates the process of adding all changes, amending the last commit, and pushing the changes to the remote branch using `--force-with-lease`.
+
+    .EXAMPLE
+    gamendpush
+    #>
+
+    git add .
+    git commit --amend --no-edit
+    git push --force-with-lease origin $(git rev-parse --abbrev-ref HEAD)
+}
+
+
 # ===============================
 # = PYTHON
 # ===============================
