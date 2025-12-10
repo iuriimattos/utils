@@ -9,6 +9,7 @@ Param(
     [string]$End = "00:01:18"
 )
 
+# example usage: download_e_corte.ps1 -Url "https://www.youtube.com/watch?v=RQzaUGcP_fE" -OutputFile "teste_a2.mp4" -Start "00:00:00" -End "00:01:18"
 Write-Host "=== Atualizando yt-dlp ==="
 yt-dlp -U
 
