@@ -1,4 +1,5 @@
 [
+{ "key": "alt+shift+f12", "command": "workbench.action.toggleZenMode" },
   // ============================================================
   // CamelCase Navigation (maptz.camelcasenavigation)
   // Extensão: maptz.camelcasenavigation
