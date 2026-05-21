@@ -95,3 +95,81 @@ if (targetDiv) {
 } else {
   console.log('Target div not found.');
 }
+
+//youtube channel sort "Em alta" by "Mais recentes"
+(() => {
+  const videoCards = Array.from(
+    document.querySelectorAll('#contents > ytd-rich-item-renderer')
+  );
+
+  if (!videoCards.length) {
+    console.log('No video cards found.');
+    return;
+  }
+
+  function parsePortugueseRelativeDate(text) {
+    if (!text) return new Date(0);
+
+    const now = new Date();
+    const normalized = text
+      .trim()
+      .toLowerCase()
+      .replace(/\u00a0/g, ' ');
+
+    const match = normalized.match(/há\s+(\d+)\s+(\w+)/i);
+    if (!match) return new Date(0);
+
+    const value = parseInt(match[1], 10);
+    const unit = match[2];
+
+    const date = new Date(now);
+
+    if (unit.startsWith('ano')) {
+      date.setFullYear(date.getFullYear() - value);
+    } else if (unit.startsWith('mês') || unit.startsWith('mes')) {
+      date.setMonth(date.getMonth() - value);
+    } else if (unit.startsWith('semana')) {
+      date.setDate(date.getDate() - value * 7);
+    } else if (unit.startsWith('dia')) {
+      date.setDate(date.getDate() - value);
+    } else if (unit.startsWith('hora')) {
+      date.setHours(date.getHours() - value);
+    } else if (unit.startsWith('minuto')) {
+      date.setMinutes(date.getMinutes() - value);
+    } else if (unit.startsWith('segundo')) {
+      date.setSeconds(date.getSeconds() - value);
+    } else {
+      return new Date(0);
+    }
+
+    return date;
+  }
+
+  const videos = videoCards.map(card => {
+    const title =
+      card.querySelector('.ytLockupMetadataViewModelTitle span')?.textContent?.trim() ||
+      card.querySelector('.ytLockupMetadataViewModelTitle')?.textContent?.trim() ||
+      '(no title)';
+
+    const metadataSpans = card.querySelectorAll(
+      '.ytContentMetadataViewModelMetadataRow .ytContentMetadataViewModelMetadataText'
+    );
+
+    const viewsText = metadataSpans[0]?.textContent?.trim() || '';
+    const dateText = metadataSpans[1]?.textContent?.trim() || '';
+    const date = parsePortugueseRelativeDate(dateText);
+
+    return { title, viewsText, dateText, date };
+  });
+
+  videos.sort((a, b) => b.date - a.date);
+
+  console.log('Sorted videos (newest -> oldest):');
+  videos.forEach((video, index) => {
+    console.log(
+      `${index + 1}. ${video.title} | ${video.viewsText} | ${video.dateText} | ${video.date.toISOString()}`
+    );
+  });
+
+  return videos;
+})();
